@@ -25,6 +25,7 @@ app.set('view engine', 'jade')
 
 // Site-wide variables
 app.locals.sitename = 'Converse'
+app.locals.slogan = "Because social shouldn't involve shouting"
 
 // Routes
 app.get('/', function (req, res) {

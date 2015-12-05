@@ -1,0 +1,35 @@
+{
+  "name": "converse",
+  "version": "1.0.0",
+  "description": "An experimental social networking app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whiteboards/converse.git"
+  },
+  "keywords": [
+    "social",
+    "media",
+    "converse",
+    "ideas"
+  ],
+  "author": "whiteboards",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whiteboards/converse/issues"
+  },
+  "homepage": "https://github.com/whiteboards/converse#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "node-sass": "^3.4.2",
+    "node-sass-middleware": "^0.9.7"
+  }
+}

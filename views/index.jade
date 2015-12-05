@@ -1,15 +1,17 @@
-doctype html
-html(lang='en')
-  head
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    link(rel="stylesheet" type="text/css" href="css/style.css")
-  body
-    #container
-      #header
-        h1 #{sitename}
-        h2 #{pagetitle}
-      #body
-        p Greetings #{user}! Welcome to Converse, an experimental social media platform!
-      #footer
-        p
-          a(href='https://github.com/whiteboards/converse') Fork me on GitHub!
+extends ./layout.jade
+
+block content
+  div.content
+    h1 #{sitename}
+    h4 Because social shouldn't involve shouting.
+    form.signUp
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#signUp__username.mdl-textfield__input(type='text',name='username',required='required')
+        label.mdl-textfield__label(for='signUp__username') Username
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#signUp__password.mdl-textfield__input(type='password',name='password',required='required')
+        label.mdl-textfield__label(for='signUp__password') Password
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored(type='submit')
+        | Sign Up
+    p Greetings #{user}! Welcome to Converse, an experimental social media platform!
+      

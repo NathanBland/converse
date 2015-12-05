@@ -2,4 +2,22 @@ extends ./layout.jade
 
 block content
   div.content
-    p Greetings #{user}! Welcome to Converse, an experimental social media platform!
+    br
+    div.mdl-card.mdl-shadow--2dp
+      div.mdl-card__title
+        h2.mdl-card__title-text Welcome
+      div.mdl-card__supporting-text Welcome to Converse, an experimental social media platform
+      div.mdl-card__actions.mdl-card--border
+        a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Get Started
+      div.mdl-card__menu
+        button.mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect
+          i.material-icons share
+    br
+    div.mdl-card.mdl-shadow--2dp
+      div.mdl-card__title
+        h2.mdl-card__title-text Profile
+      div.mdl-card__supporting-text
+        p Profile picture, bio, location, contact info (email, phone, website, pgp key, other social media)
+      div.mdl-card__actions.mdl-card--border
+        a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Just do it
+  

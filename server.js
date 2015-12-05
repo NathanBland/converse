@@ -3,15 +3,15 @@ var express = require('express');
 var app = express();
 
 app.use(express.static('public'));
-//app.set('view engine', 'jade');
+app.set('view engine', 'jade');
+
+app.locals.sitename = 'Converse';
 
 app.get('/', function(req, res){
-  /*
   res.render('index', {
-    user: 'Temp'
+    user: 'TempUser',
+    pagetitle: 'Home Page'
   });
-  */
-  res.send('Hello from Whiteboards! Welcome to Converse!');
 });
 
 app.listen(3000);

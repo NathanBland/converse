@@ -1,8 +1,12 @@
 var express = require('express')
 var sass = require('node-sass-middleware')
 var path = require('path')
-var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
+// var mongoose = require('mongoose')
+
+var routes = require('./routes/')
+
+// mongoose.connect('mongodb://' + (process.env.IP || 'localhost') + '/data')
 
 var app = express()
 
@@ -29,11 +33,6 @@ app.set('view engine', 'jade')
 app.set('port', process.env.PORT || 3000)
 app.set('ip', process.env.IP || '0.0.0.0')
 
-// Configure body-parser
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({extended: false})
-// Using this method recommended from https://github.com/expressjs/body-parser#express-route-specific
-
 // Configure cookie-parser
 app.use(cookieParser('This is a supery-dupery-doo secret that is secrety'))
 
@@ -41,20 +40,11 @@ app.use(cookieParser('This is a supery-dupery-doo secret that is secrety'))
 app.locals.sitename = 'Converse'
 app.locals.slogan = "Because social shouldn't involve shouting"
 
-// Routes
-app.get('/', function (req, res) {
-  res.render('index', {
-    user: 'TempUser',
-    pagetitle: 'Home Page'
-  })
-})
+app.use(routes)
 
-app.get('/user/:username', urlencodedParser, function (req, res) {
-  console.log(req.path)
-  res.render('profile', {
-    pagetitle: 'Profile',
-    user: req.params.username
-  })
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.satus(500).sendFile(__dirname + '/views/error.html')
 })
 
 // Run the server

@@ -32,6 +32,7 @@ app.set('ip', process.env.IP || '0.0.0.0')
 // Configure body-parser
 var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({extended: false})
+// Using this method recommended from https://github.com/expressjs/body-parser#express-route-specific
 
 // Configure cookie-parser
 app.use(cookieParser('This is a supery-dupery-doo secret that is secrety'))
@@ -48,7 +49,7 @@ app.get('/', function (req, res) {
   })
 })
 
-app.get('/user/:username', jsonParser, function (req, res) {
+app.get('/user/:username', urlencodedParser, function (req, res) {
   console.log(req.path)
   res.render('profile', {
     pagetitle: 'Profile',

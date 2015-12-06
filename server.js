@@ -2,11 +2,12 @@ var express = require('express')
 var sass = require('node-sass-middleware')
 var path = require('path')
 var cookieParser = require('cookie-parser')
-// var mongoose = require('mongoose')
+var mongoose = require('mongoose')
 
 var routes = require('./routes/')
 
-// mongoose.connect('mongodb://' + (process.env.IP || 'localhost') + '/data')
+mongoose.connect('mongodb://' + (process.env.IP || 'localhost') + '/data')
+console.log('[mongodb] connected to mongodb://' + (process.env.IP || 'localhost') + '/data')
 
 var app = express()
 
@@ -44,7 +45,7 @@ app.use(routes)
 
 app.use(function (err, req, res, next) {
   console.error(err.stack)
-  res.satus(500).sendFile(__dirname + '/views/error.html')
+  res.status(500).sendFile(__dirname + '/views/error.html')
 })
 
 // Run the server

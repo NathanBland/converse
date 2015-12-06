@@ -1,4 +1,6 @@
 # Converse
+
+[![Join the chat at https://gitter.im/NathanBland/converse](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NathanBland/converse?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 An experimental social media platform
 
 ## Planned Features

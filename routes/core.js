@@ -1,5 +1,6 @@
 var express = require('express')
 var bodyParser = require('body-parser')
+var fs = require('fs')
 
 var router = module.exports = express.Router()
 
@@ -22,4 +23,16 @@ router.get('/user/:username', urlencodedParser, function (req, res) {
     pagetitle: 'Profile',
     user: req.params.username
   })
+})
+
+router.get('/privacy', function (req, res) {
+  res.render('infopages/privacy')
+})
+
+router.get('/help', function (req, res) {
+  res.render('infopages/help')
+})
+
+router.get('/useragreement', function (req, res) {
+  res.render('infopages/terms')
 })

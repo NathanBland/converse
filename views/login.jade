@@ -1,0 +1,13 @@
+extends ./layout.jade
+
+block content
+  div.content
+    form.signUp
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#signUp__username.mdl-textfield__input(type='text',name='username',required='required')
+        label.mdl-textfield__label(for='signUp__username') Username
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#signUp__password.mdl-textfield__input(type='password',name='password',required='required')
+        label.mdl-textfield__label(for='signUp__password') Password
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored(type='submit') Log In
+   p Need to change from signUp to logIn

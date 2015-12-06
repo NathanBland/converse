@@ -26,22 +26,13 @@ router.get('/user/:username', urlencodedParser, function (req, res) {
 })
 
 router.get('/privacy', function (req, res) {
-  res.render('footerpages', {
-    pagetitle: 'Privacy and Terms',
-    pagecontent: 'This is the privacy and terms page. How should we get content here?'
-  })
+  res.render('infopages/privacy')
 })
 
 router.get('/help', function (req, res) {
-  res.render('footerpages', {
-    pagetitle: 'Help',
-    pagecontent: 'This is the help page. How should we get content here?'
-  })
+  res.render('infopages/help')
 })
 
 router.get('/useragreement', function (req, res) {
-  res.render('footerpages', {
-    pagetitle: 'User Agreement',
-    pagecontent: 'This is the user agreement page. How should we get content here?'
-  })
+  res.render('infopages/terms')
 })

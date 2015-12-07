@@ -5,7 +5,7 @@ var LocalStrategy = require('passport-local').Strategy
 var User = require('../models/user.js')
 var router = module.exports = express.Router()
 
-passport.use(new LocalStrategy(User.authenticate()))
+passport.use(User.createStrategy())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
@@ -80,7 +80,7 @@ router.post('/signUp', function (req, res, next) {
     email: req.body.email
   }), req.body.password, function (err, user) {
     if (err) {
-      console.log(err)
+      console.log('Error during sign up:', err)
       return res.render('signUp', {
         title: 'Converse - Sign Up',
         notification: {

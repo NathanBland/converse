@@ -2,6 +2,14 @@ header .mdl-layout__header-row .mdl-layout-title a {
   color: white;
   text-decoration: none; }
 
+aside.notification {
+  text-align: center;
+  padding: 1em;
+  font-size: 150%; }
+  aside.notification.error {
+    background-color: #f44336;
+    color: white; }
+
 main.mdl-layout__content {
   display: flex;
   justify-content: flex-start;

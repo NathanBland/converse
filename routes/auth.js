@@ -29,6 +29,12 @@ router.get('/login', function (req, res, next) {
   })
 })
 
+router.get('/signUp', function (req, res, next) {
+  res.render('signUp', {
+    title: 'Sign Up',
+    user: req.user
+  })
+})
 router.get('logout', function (req, res) {
   req.logout()
   res.redirect('/')
@@ -53,7 +59,55 @@ router.post('/login', function (req, res, next) {
       if (err) {
         return next(err)
       }
-      return res.redirect('/')
+      return res.redirect('/dash')
     })
   })(req, res, next)
+})
+
+router.post('/signUp', function (req, res, next) {
+  if (!req.body.password || !req.body.email || !req.body.username) {
+    return res.render('signUp', {
+      title: 'Converse - Sign Up',
+      notification: {
+        severity: 'error',
+        message: 'Sorry about that, looks like you missed some required details! Please try again.'
+      }
+    })
+  }
+  console.log(req.body.email + ' signed up')
+  User.register(new User({
+    email: req.body.email
+  }), req.body.password, function (err, user) {
+    if (err) {
+      console.log(err)
+      return res.render('signUp', {
+        title: 'Converse - Sign Up',
+        notification: {
+          severity: 'error',
+          message: 'Failed to register user: ' + err.message
+        },
+        user: user
+      })
+    }
+    passport.authenticate('local', function (err, user, info) {
+      if (err) {
+        console.log(err)
+      }
+      if (!user) {
+        return res.render('signUp', {
+          title: 'Converse - Sign Up',
+          notification: {
+            severity: 'error',
+            message: 'Your username or password was incorrect, please try again.'
+          }
+        })
+      }
+      req.login(user, function (err) {
+        if (err) {
+          return next(err)
+        }
+        return res.redirect('/dash')
+      })
+    })(req, res, next)
+  })
 })

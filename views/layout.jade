@@ -35,8 +35,14 @@ html(lang='en')
         nav.mdl-navigation
           a.mdl-navigation__link(href='/login') Login
           a.mdl-navigation__link(href='/signUp') Sign up
+      if notification
+        aside.notification(class='#{severity}')
+          |= notification
       main.mdl-layout__content
         block content
+    //- Footer thinks it can be an asshole and get away with it.
+    //- Footer is wrong. Commented out for now.
+    //-
       footer.mdl-mini-footer
         .mdl-mini-footer__left-section
           .mdl-logo

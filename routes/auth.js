@@ -23,7 +23,7 @@ router.use(function (req, res, next) {
   console.log('user:', req.user)
   if (user) {
     res.locals.user = {
-      username: user.username
+      username: user.email
     }
   }
   next()
@@ -51,6 +51,13 @@ router.post('/login', function (req, res, next) {
   console.log(req.body.email + ' logged in')
   passport.authenticate('local', function (err, user, info) {
     if (err) {
+      return res.render('login', {
+        title: 'Log in',
+        notification: {
+          severity: 'error',
+          message: 'Looks like there was a problem on our side, please try again.'
+        }
+      })
       console.log(err)
     }
     if (!user) {

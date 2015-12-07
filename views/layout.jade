@@ -10,19 +10,28 @@ html(lang='en')
     link(rel="stylesheet" type="text/css" href="/css/style.css")
   body
     .mdl-layout.mdl-js-layout
-      header.mdl-layout__header.mdl-layout__header--waterfall
+      header.mdl-layout__header.mdl-layout__header--scroll
         // Top row, always visible
         .mdl-layout__header-row
           // Title
           span.mdl-layout-title 
             a(href='/') #{sitename} 
           .mdl-layout-spacer
+          nav.mdl-navigation
+            unless user
+              a.mdl-navigation__link(href='/login') Login
+              a.mdl-navigation__link(href='/signUp') Sign Up
+            else
+              a.mdl-navigation__link(href='/logout') Logout
+              
+        //
           .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right
             label.mdl-button.mdl-js-button.mdl-button--icon(for='waterfall-exp')
               i.material-icons search
             .mdl-textfield__expandable-holder
               input#waterfall-exp.mdl-textfield__input(type='text', name='search')
         // Bottom row, not visible on scroll
+      //
         .mdl-layout__header-row
           .mdl-layout-spacer
           // Navigation

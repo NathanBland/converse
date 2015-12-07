@@ -4,7 +4,8 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
-
+var session = require('express-session')
+var MongoStore = require('connect-mongo')(session)
 var routes = require('./routes/')
 
 mongoose.connect('mongodb://' + (process.env.IP || 'localhost') + '/data')
@@ -47,6 +48,12 @@ app.use(bodyParser.urlencoded({
   extended: false
 }))
 
+app.use(session({
+  secret: 'foo and some bar, but not too far. On to the star, maybe we can take the car?',
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  resave: true,
+  saveUninitialized: true
+}))
 app.use(routes)
 
 app.use(function (err, req, res, next) {

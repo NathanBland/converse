@@ -74,6 +74,7 @@ router.post('/signUp', function (req, res, next) {
       }
     })
   }
+  console.log('user details:', req.body)
   console.log(req.body.email + ' signed up')
   User.register(new User({
     email: req.body.email

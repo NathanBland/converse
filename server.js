@@ -3,6 +3,7 @@ var sass = require('node-sass-middleware')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var mongoose = require('mongoose')
+var bodyParser = require('body-parser')
 
 var routes = require('./routes/')
 
@@ -40,6 +41,11 @@ app.use(cookieParser('This is a supery-dupery-doo secret that is secrety'))
 // Site-wide variables
 app.locals.sitename = 'Converse'
 app.locals.slogan = "Because social shouldn't involve shouting"
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 
 app.use(routes)
 

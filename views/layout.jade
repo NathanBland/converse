@@ -14,7 +14,8 @@ html(lang='en')
         // Top row, always visible
         .mdl-layout__header-row
           // Title
-          span.mdl-layout-title #{sitename} 
+          span.mdl-layout-title 
+            a(href='/') #{sitename} 
           .mdl-layout-spacer
           .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right
             label.mdl-button.mdl-js-button.mdl-button--icon(for='waterfall-exp')
@@ -26,14 +27,21 @@ html(lang='en')
           .mdl-layout-spacer
           // Navigation
           nav.mdl-navigation
-            a.mdl-navigation__link(href='') Link
+            a.mdl-navigation__link(href='/login') Login
+            a.mdl-navigation__link(href='/signUp') Sign Up
       .mdl-layout__drawer
       
         span.mdl-layout-title #{sitename}
         nav.mdl-navigation
-          a.mdl-navigation__link(href='') Link
+          a.mdl-navigation__link(href='/login') Login
+          a.mdl-navigation__link(href='/signUp') Sign up
+      if notification
+        aside.notification(class='#{notification.severity}') #{notification.message}
       main.mdl-layout__content
         block content
+    //- Footer thinks it can be an asshole and get away with it.
+    //- Footer is wrong. Commented out for now.
+    //-
       footer.mdl-mini-footer
         .mdl-mini-footer__left-section
           .mdl-logo

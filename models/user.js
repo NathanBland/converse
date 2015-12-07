@@ -10,10 +10,13 @@ var User = mongoose.Schema({
   },
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: false
   }
 })
 
-User.plugin(require('passport-local-mongoose'))
+User.plugin(require('passport-local-mongoose'), {
+  usernameField: 'email'
+})
 
 module.exports = mongoose.model('user', User)

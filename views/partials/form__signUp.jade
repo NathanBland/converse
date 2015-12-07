@@ -12,5 +12,8 @@ form.signUp(action='/signUp', method='post')
       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
         input#signUp__password.mdl-textfield__input(type='password',name='password',required='required')
         label.mdl-textfield__label(for='signUp__password') Password
+      label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='checkbox-age')
+        input#checkbox-age.mdl-checkbox__input(type='checkbox', name='age')
+        span.mdl-checkbox__label I am over 13 years old.
     .mdl-card__actions
       button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored(type='submit') Sign Up

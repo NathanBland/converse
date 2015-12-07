@@ -10,7 +10,7 @@ var User = mongoose.Schema({
   },
   username: {
     type: String,
-    required: false,
+    required: true,
     unique: false
   }
 })

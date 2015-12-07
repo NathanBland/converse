@@ -11,8 +11,22 @@ main.mdl-layout__content
   flex-direction: column
   .content
     // This is temporary, we need a better solution
-    width: 900px
+    // When in doubt, flex-box it out!
+    min-width: 900px
+    .landing-login
+      h4
+        text-align: center
+    form.signUp, form.logIn
+          .mdl-card__actions
+            display: flex
+            flex-direction: row
+            justify-content: center
     form.signUp
+      display: flex
+      flex-direction: column
+      align-items: center
+      margin: 1em
+    form.logIn
       display: flex
       flex-direction: column
       align-items: center

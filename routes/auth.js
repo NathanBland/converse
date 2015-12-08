@@ -1,9 +1,31 @@
 var express = require('express')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
-var User = require('../models/user.js')
+var User = require('../models/user')
+
 var router = module.exports = express.Router()
 
+// Start session and set locals.
+router.use(passport.initialize())
+router.use(passport.session())
+router.use(function (req, res, next) {
+  if (req.user) {
+    res.locals.user = {
+      username: req.user.username
+    }
+  }
+  next()
+})
+
+// setup our routes.
+router.get('/signup', signup)
+router.get('/login', login)
+router.get('/logout', logout)
+
+router.post('/login', authenticate)
+router.post('/signup', register)
+
+// Start the Strategy
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(function (user, done) {
   done(null, user.id)
@@ -13,31 +35,66 @@ passport.deserializeUser(function (id, done) {
     done(err, user)
   })
 })
-router.use(passport.initialize())
-router.use(passport.session())
 
-router.get('/signup', function (req, res) {
-  return res.render('signUp', {
-    title: 'Create an account - Converse'
+// route functions
+function signup (req, res, next) {
+  res.render('signup', {
+    title: 'Signup'
   })
-})
-router.post('/signup', function (req, res, next) {
-  if (!req.body.username || !req.body.displayName || !req.body.password || !req.body.age) {
-    return res.render('signUp', {
-      title: 'Create an account - Converse',
-      notification: {
-        severity: 'error',
-        message: 'Whoops, looks like you left something out, please try again.'
-      }
-    })
+}
+
+function login (req, res, next) {
+  if (req.user) {
+    return res.redirect('/dashboard')
   }
+  res.render('login', {
+    title: 'Login'
+  })
+}
+
+function authenticate (req, res, next) {
+  console.log(req.body.username)
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      console.log('[auth.js] err: ' + err)
+      return next(err)
+    }
+
+    if (!user) {
+      console.log('[auth.js] err: ' + err)
+      console.log('[auth.js] user: ' + user)
+      return res.render('login', {
+        title: 'Converse - Log in',
+        notification: {
+          severity: 'error',
+          message: 'Your username or password is wrong. Try again.'
+        }
+      })
+    }
+    // Log the user in and redirect to their dashboard.
+    req.login(user, function (err) {
+      if (err) {
+        return next(err)
+      }
+      res.locals.user = user
+      // console.log('[auth.js] user in auth:' + user);
+      var redirect = '/profile'
+      if (req.cookies.redirect) {
+        redirect = req.cookies.redirect
+        res.cookie('redirect', null, {maxAge: 0, expires: Date.now()})
+      }
+      return res.redirect(redirect)
+    })
+  })(req, res, next)
+}
+
+function register (req, res, next) {
   User.register(new User({
     username: req.body.username
-  }), req.body.password, function (err, user, info) {
-    console.log('[auth.js] signing up:', user)
+  }), req.body.password, function (err, user) {
     if (err) {
-      console.log(err)
-      return res.render('signUp', {
+      console.error('[auth.js] Failed to add user: ' + req.body.username + ' Error: ' + err)
+      return res.render('signup', {
         title: 'Converse - Create an account',
         notification: {
           severity: 'error',
@@ -46,60 +103,14 @@ router.post('/signup', function (req, res, next) {
         user: user
       })
     }
-    if (!user) {
-      console.log('[auth.js] err:', err)
-      console.log('[auth.js] user (should be undefined):', user)
-      console.log('[auth.js] info:', info)
-    }
-    console.log('[auth.js] authenticating using local..')
-    passport.authenticate('[auth.js] local', {
-      successRedirect: '[auth.js] /dashboard',
-      failureRedirect: '[auth.js] /signUp',
-      failureFlash: true
+    console.log(user)
+    passport.authenticate('local')(req, res, function () {
+      return res.redirect('/profile')
     })
   })
-})
-// ----------------------------------------------------
-// Don't care about anything below this line currently.
-// ----------------------------------------------------
-router.get('/login', function (req, res) {
-  return res.render('login', {
-    title: 'Log in - Converse',
-    user: req.user
-  })
-})
+}
 
-router.post('/login', function (req, res, next) {
-  console.log('[auth.js] username:', req.body.username)
-  passport.authenticate('local', function (err, user, info) {
-    if (err) {
-      return next(err)
-    }
-    if (!user) {
-      console.log(err)
-      console.log(user)
-      return res.render('login', {
-        title: 'Log in - Converse',
-        notification: {
-          severity: 'error',
-          message: 'Your username or password is wrong. Try again.'
-        }
-      })
-    }
-    // Log the user in and redirect to the homepage.
-    req.login(user, function (err) {
-      console.log('[auth.js] user logged in after signing up:', user)
-      if (err) {
-        return next(err)
-      }
-      return res.redirect('/dashboard')
-    })
-  })(req, res, next) /**/
-})
-//
-// End local
-//
-router.get('/logout', function (req, res) {
+function logout (req, res, next) {
   req.logout()
-  return res.redirect('/')
-})
+  res.redirect('/')
+}

@@ -1,17 +1,16 @@
 var mongoose = require('mongoose')
 
 var User = mongoose.Schema({
-  email: {
+  /* email: {
     type: String,
     required: true,
     index: {
       unique: true
     }
-  },
+  }, */
   username: {
     type: String,
-    required: true,
-    unique: false
+    required: true
   }
 })
 User.plugin(require('passport-local-mongoose'), {

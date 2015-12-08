@@ -99,7 +99,7 @@ function register (req, res, next) {
     })
   } else {
     User.register(new User({
-      username: req.body.username, displayName: req.body.displayName
+      email: req.body.username, displayName: req.body.displayName
     }), req.body.password, function (err, user) {
       if (err) {
         console.error('[auth.js] Failed to add user: ' + req.body.username + ' Error: ' + err)

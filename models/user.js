@@ -1,13 +1,13 @@
 var mongoose = require('mongoose')
 
 var User = mongoose.Schema({
-  /* email: {
+  email: {
     type: String,
     required: true,
     index: {
       unique: true
     }
-  }, */
+  },
   username: {
     type: String,
     required: false
@@ -18,7 +18,9 @@ var User = mongoose.Schema({
   }
 })
 User.plugin(require('passport-local-mongoose'), {
-  usernameLowerCase: true
+  usernameField: 'email',
+  usernameLowerCase: true,
+  usernameQueryFields: ['email']
 })
 
 module.exports = mongoose.model('user', User)

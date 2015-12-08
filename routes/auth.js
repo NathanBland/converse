@@ -89,25 +89,35 @@ function authenticate (req, res, next) {
 }
 
 function register (req, res, next) {
-  User.register(new User({
-    username: req.body.username
-  }), req.body.password, function (err, user) {
-    if (err) {
-      console.error('[auth.js] Failed to add user: ' + req.body.username + ' Error: ' + err)
-      return res.render('signup', {
-        title: 'Converse - Create an account',
-        notification: {
-          severity: 'error',
-          message: 'Failed to register user: ' + err.message
-        },
-        user: user
-      })
-    }
-    console.log(user)
-    passport.authenticate('local')(req, res, function () {
-      return res.redirect('/profile')
+  if (!req.body.username || !req.body.displayName || !req.body.password || !req.body.age) {
+    return res.render('signup', {
+      title: 'Converse - Create an account',
+      notification: {
+        severity: 'error',
+        message: 'Looks like you missed a few details, try again please.'
+      }
     })
-  })
+  } else {
+    User.register(new User({
+      username: req.body.username, displayName: req.body.displayName
+    }), req.body.password, function (err, user) {
+      if (err) {
+        console.error('[auth.js] Failed to add user: ' + req.body.username + ' Error: ' + err)
+        return res.render('signup', {
+          title: 'Converse - Create an account',
+          notification: {
+            severity: 'error',
+            message: 'Failed to register user: ' + err.message
+          },
+          user: user
+        })
+      }
+      console.log(user)
+      passport.authenticate('local')(req, res, function () {
+        return res.redirect('/profile')
+      })
+    })
+  }
 }
 
 function logout (req, res, next) {

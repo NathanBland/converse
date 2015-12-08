@@ -1,11 +1,11 @@
 var express = require('express')
 var sass = require('node-sass-middleware')
 var path = require('path')
-var cookieParser = require('cookie-parser')
 var mongoose = require('mongoose')
-var bodyParser = require('body-parser')
 var session = require('express-session')
-//var MongoStore = require('connect-mongo')(session)
+var MongoStore = require('connect-mongo')(session)
+var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 var routes = require('./routes/')
 
 mongoose.connect('mongodb://' + (process.env.IP || 'localhost') + '/data')
@@ -40,21 +40,22 @@ app.set('ip', process.env.IP || '0.0.0.0')
 
 // Site-wide variables
 app.locals.sitename = 'Converse'
-app.locals.slogan = "Because social shouldn't involve shouting"
+app.locals.slogan = 'Because social shouldn\'t involve shouting'
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: false
 }))
-
-app.use(cookieParser('This is a supery-dupery-doo secret that is secrety'))
+var sessionStore = new MongoStore({
+  mongooseConnection: mongoose.connection
+})
+app.use(cookieParser('config.cookieSecret')) // these values are temporary and will be chnaged
 app.use(session({
-  secret: 'foo and some bar, but not too far. On to the star, maybe we can take the car?',
+  secret: 'config.sessionSecret', // these values are temporary and will be chnaged
+  key: 'config.sessionSecret', // these values are temporary and will be chnaged
+  store: sessionStore,
   resave: true,
-  saveUninitialized: true// ,
-  /* truestore: new MongoStore({
-    mongooseConnection: mongoose.connection
-  }) */
+  saveUninitialized: true
 }))
 app.use(routes)
 

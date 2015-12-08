@@ -6,6 +6,7 @@ router.route('/dashboard')
     if (!req.user) {
       return res.redirect('/login')
     }
+    next()
   })
   .get(function (req, res, next) {
     console.log(req.path)

@@ -9,7 +9,7 @@ var session = require('express-session')
 var routes = require('./routes/')
 
 mongoose.connect('mongodb://' + (process.env.IP || 'localhost') + '/data')
-console.log('[mongodb] connected to mongodb://' + (process.env.IP || 'localhost') + '/data')
+console.log('[server.js] connected to mongodb://' + (process.env.IP || 'localhost') + '/data')
 
 var app = express()
 
@@ -68,5 +68,5 @@ app.use(function (err, req, res, next) {
 // Run the server
 var server = app.listen(app.get('port'), app.get('ip'), function () {
   var address = server.address()
-  console.log('[converse] app listening on https://%s:%s', address.address, address.port)
+  console.log('[server.js] app listening on https://%s:%s', address.address, address.port)
 })

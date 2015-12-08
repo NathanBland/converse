@@ -1,0 +1,13 @@
+form.logIn(action='/login', method='post')
+  .mdl-card.mdl-shadow--4dp
+    .mdl-card__title
+      h2.mdl-card__title-text Login
+    .mdl-card__supporting-text
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#logIn__email.mdl-textfield__input(type='email',name='username',required='required')
+        label.mdl-textfield__label(for='logIn__email') Email
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#logIn__password.mdl-textfield__input(type='password',name='password',required='required')
+        label.mdl-textfield__label(for='logIn__password') Password
+    .mdl-card__actions
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored(type='submit') Log In

@@ -1,23 +1,63 @@
 extends ./layout.jade
 
 block content
-  div.content
-    br
-    div.mdl-card.mdl-shadow--2dp
-      div.mdl-card__title
-        h2.mdl-card__title-text Welcome
-      div.mdl-card__supporting-text Welcome to Converse, an experimental social media platform
-      div.mdl-card__actions.mdl-card--border
-        a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Get Started
-      div.mdl-card__menu
-        button.mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect
-          i.material-icons share
-    br
-    div.mdl-card.mdl-shadow--2dp
-      div.mdl-card__title
-        h2.mdl-card__title-text Profile
-      div.mdl-card__supporting-text
-        p Profile picture, bio, location, contact info (email, phone, website, pgp key, other social media)
-      div.mdl-card__actions.mdl-card--border
-        a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Just do it
-  
+  .content
+    .mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect
+      .mdl-tabs__tab-bar
+        a.mdl-tabs__tab.is-active(href="#public-panel") Public
+        a.mdl-tabs__tab(href="#private-panel") Private
+        a.mdl-tabs__tab(href="#settings-panel") Settings
+      .mdl-tabs__panel.is-active(id="public-panel")
+        .mdl-grid
+          .mdl-cell.mdl-cell--6-col
+            .mdl-card.mdl-shadow--2dp
+              .mdl-card__title
+                h2.mdl-card__title-text Welcome
+              .mdl-card__supporting-text  We at Converse would like to welcome you to our experimental social media platform! We hope you like what you see!
+              .mdl-card__actions.mdl-card--border
+                a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Dismiss
+          .mdl-cell.mdl-cell--6-col
+            .mdl-card.mdl-shadow--2dp
+              .mdl-card__title
+                h2.mdl-card__title-text Profile
+              .mdl-card__supporting-text
+                p Profile picture, bio, location, contact info (email, phone, website, pgp key, other social media)
+              .mdl-card__actions.mdl-card--border
+                a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Just do it
+      .mdl-tabs__panel(id="private-panel")
+        ul
+          li Private 1
+          li Private 2
+      .mdl-tabs__panel(id="settings-panel")
+        .profile.settings.user
+          h4 User Details
+          p Username: #{user}
+        .profile.settings.email
+          h4 Email
+          form
+            .mdl-layout
+              .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                input#signUp__email.mdl-textfield__input(type='text',name='username')
+                label.mdl-textfield__label(for='signUp__email') E-mail
+        .profile.settings.password
+          h4 Change Password
+          .mdl-grid
+            .mdl-cell.mdl-cell--6-col
+              form
+                .mdl-layout
+                  .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                    input#signUp__password.mdl-textfield__input(type='password',name='password')
+                    label.mdl-textfield__label(for='signUp__password') Current Password
+                      span.
+                  .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                    input#signUp__password.mdl-textfield__input(type='password',name='password')
+                    label.mdl-textfield__label(for='signUp__password') New Password
+                  .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                    input#signUp__password.mdl-textfield__input(type='password',name='password')
+                    label.mdl-textfield__label(for='signUp__password') Confirm Password
+                a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Change password
+            .mdl-cell.mdl-cell--6-col
+              .mdl-card.mdl-shadow--2dp
+                .mdl-card__title
+                  h2.mdl-card__title-text Password requirements
+                .mdl-card__supporting-text  Remember, your password needs to be at least 8 characters long, contain lower case, upper case, a number, and a symbol. Thanks for helping us keep your account secure!

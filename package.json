@@ -32,6 +32,7 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "jade": "^1.11.0",
+    "kerberos": "0.0.17",
     "lodash": "^3.10.1",
     "material-design-lite": "^1.0.6",
     "mongoose": "^4.2.9",

@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var session = require('express-session')
-var MongoStore = require('connect-mongo')(session)
+//var MongoStore = require('connect-mongo')(session)
 var routes = require('./routes/')
 
 mongoose.connect('mongodb://' + (process.env.IP || 'localhost') + '/data')
@@ -22,7 +22,7 @@ app.use(
     src: '/sass',
     dest: '/public/css',
     prefix: '/css',
-    debug: true
+    debug: false
   })
 )
 
@@ -37,7 +37,6 @@ app.set('port', process.env.PORT || 3000)
 app.set('ip', process.env.IP || '0.0.0.0')
 
 // Configure cookie-parser
-app.use(cookieParser('This is a supery-dupery-doo secret that is secrety'))
 
 // Site-wide variables
 app.locals.sitename = 'Converse'
@@ -48,17 +47,22 @@ app.use(bodyParser.urlencoded({
   extended: false
 }))
 
+app.use(cookieParser('This is a supery-dupery-doo secret that is secrety'))
 app.use(session({
   secret: 'foo and some bar, but not too far. On to the star, maybe we can take the car?',
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true// ,
+  /* truestore: new MongoStore({
+    mongooseConnection: mongoose.connection
+  }) */
 }))
 app.use(routes)
 
 app.use(function (err, req, res, next) {
   console.error(err.stack)
-  res.status(500).sendFile(__dirname + '/views/error.html')
+  res.status(500).render('error', {
+    title: 'Uh, Sorry'
+  })
 })
 
 // Run the server

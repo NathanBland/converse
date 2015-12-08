@@ -34,7 +34,7 @@ router.post('/signup', function (req, res, next) {
   User.register(new User({
     username: req.body.username
   }), req.body.password, function (err, user, info) {
-    console.log('signing up:', user)
+    console.log('[auth.js] signing up:', user)
     if (err) {
       console.log(err)
       return res.render('signUp', {
@@ -47,14 +47,14 @@ router.post('/signup', function (req, res, next) {
       })
     }
     if (!user) {
-      console.log('err:', err)
-      console.log('user (should be undefined):', user)
-      console.log('info:', info)
+      console.log('[auth.js] err:', err)
+      console.log('[auth.js] user (should be undefined):', user)
+      console.log('[auth.js] info:', info)
     }
-    console.log('authenticating using local..')
-    passport.authenticate('local', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/signUp',
+    console.log('[auth.js] authenticating using local..')
+    passport.authenticate('[auth.js] local', {
+      successRedirect: '[auth.js] /dashboard',
+      failureRedirect: '[auth.js] /signUp',
       failureFlash: true
     })
   })
@@ -70,7 +70,7 @@ router.get('/login', function (req, res) {
 })
 
 router.post('/login', function (req, res, next) {
-  console.log('username:', req.body.username)
+  console.log('[auth.js] username:', req.body.username)
   passport.authenticate('local', function (err, user, info) {
     if (err) {
       return next(err)
@@ -88,7 +88,7 @@ router.post('/login', function (req, res, next) {
     }
     // Log the user in and redirect to the homepage.
     req.login(user, function (err) {
-      console.log('user logged in after signing up:', user)
+      console.log('[auth.js] user logged in after signing up:', user)
       if (err) {
         return next(err)
       }

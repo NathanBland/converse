@@ -8,10 +8,11 @@ var urlencodedParser = bodyParser.urlencoded({extended: false})
 // Using this method recommended from https://github.com/expressjs/body-parser#express-route-specific
 
 // These routes are all prefixed by /user
-router.get('/:username', urlencodedParser, function (req, res) {
+router.get('/', urlencodedParser, function (req, res) {
   console.log(req.path)
   res.render('profile', {
     pagetitle: 'Profile',
-    user: req.params.username
+    user: req.user.username,
+    email: req.user.email
   })
 })

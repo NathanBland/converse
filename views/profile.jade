@@ -1,23 +1,15 @@
 extends ./layout.jade
 
 block content
-  div.content
-    br
-    div.mdl-card.mdl-shadow--2dp
-      div.mdl-card__title
-        h2.mdl-card__title-text Welcome
-      div.mdl-card__supporting-text Welcome to Converse, an experimental social media platform
-      div.mdl-card__actions.mdl-card--border
-        a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Get Started
-      div.mdl-card__menu
-        button.mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect
-          i.material-icons share
-    br
-    div.mdl-card.mdl-shadow--2dp
-      div.mdl-card__title
-        h2.mdl-card__title-text Profile
-      div.mdl-card__supporting-text
-        p Profile picture, bio, location, contact info (email, phone, website, pgp key, other social media)
-      div.mdl-card__actions.mdl-card--border
-        a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Just do it
-  
+  .mdl-cell.mdl-cell--8-col.mdl-cell--4-phone
+    .mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect
+      .mdl-tabs__tab-bar
+        a.mdl-tabs__tab.is-active(href="#public-panel") Public
+        a.mdl-tabs__tab(href="#private-panel") Private
+        a.mdl-tabs__tab(href="#settings-panel") Settings
+      .mdl-tabs__panel.is-active(id="public-panel")
+        include ./partials/profile/public
+      .mdl-tabs__panel(id="private-panel")
+        include ./partials/profile/private
+      .mdl-tabs__panel(id="settings-panel")
+        include ./partials/profile/settings

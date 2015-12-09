@@ -1,0 +1,31 @@
+.mdl-cell.mdl-cell--6-col
+  h4 User Details
+  p Username: #{user}
+.mdl-cell.mdl-cell--6-col
+  h4 Email
+  form
+    .mdl-layout
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#signUp__email.mdl-textfield__input(type='text',name='username',value="#{email}")
+        label.mdl-textfield__label(for='signUp__email') E-mail
+    a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Change email
+.mdl-cell.mdl-cell--6-col
+  h4 Change Password
+  form
+    .mdl-layout
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#signUp__password.mdl-textfield__input(type='password',name='password')
+        label.mdl-textfield__label(for='signUp__password') Current Password
+          span.
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#signUp__password.mdl-textfield__input(type='password',name='password')
+        label.mdl-textfield__label(for='signUp__password') New Password
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        input#signUp__password.mdl-textfield__input(type='password',name='password')
+        label.mdl-textfield__label(for='signUp__password') Confirm Password
+    a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Change password
+.mdl-cell.mdl-cell--6-col
+  .mdl-card.mdl-shadow--2dp
+    .mdl-card__title
+      h2.mdl-card__title-text Password requirements
+    .mdl-card__supporting-text  Remember, your password needs to be at least 8 characters long, contain lower case, upper case, a number, and a symbol. Thanks for helping us keep your account secure!

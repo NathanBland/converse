@@ -1,4 +1,35 @@
+$primary-bg-color-1: #3f51b5
+$dashboard-bg-1: #262A3C
+$error-primary-1: rgb(244, 67, 54)
+
 header
+  &.dashboard
+    background-color: $dashboard-bg-1
+    color: white
+    .mdl-layout-title
+      a
+        color: white
+        text-decoration: none
+    .profile
+      .material-icons
+        font-size: 2em
+        line-height: 2em
+        vertical-align: middle
+        padding-right: .25em
+    nav.mdl-navigation
+      .mdl-navigation__link
+        display: flex
+        flex-direction: row
+        align-items: center
+        color: white
+        &:hover
+          background-color: $primary-bg-color-1
+          color: white
+        .material-icons
+          vertical-align: middle
+          margin-right: 1.5em
+          &::after
+            right: -12px
   .mdl-layout__header-row
     .mdl-layout-title
       a
@@ -9,7 +40,7 @@ aside.notification
   padding: 1em
   font-size: 150%
   &.error
-    background-color: rgb(244, 67, 54)
+    background-color: $error-primary-1
     color: white
 
 main.mdl-layout__content
@@ -46,6 +77,8 @@ main.mdl-layout__content
       flex-direction: column
       align-items: center
       margin: 1em
+    .dashboard
+
 footer
   .mdl-mini-footer__right-section
     button.mdl-mini-footer__social-btn

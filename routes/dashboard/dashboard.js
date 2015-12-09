@@ -8,6 +8,30 @@ router.route('/dashboard')
     }
     next()
   })
+  /** Need to think about moving these to their
+  * own middleware so that it is availible to all
+  * user authenticated pages..
+  **/
+  .get(function (req, res, next) { // grab notifications
+    req.user.findNotifications(function (err, notifications) {
+      if (err) {
+        console.warn('[dashboard.js] err getting notifications:', err)
+        next(err)
+      }
+      res.locals.notifications = notifications
+      next()
+    })
+  })
+  .get(function (req, res, next) { // grab friends
+    req.user.findFriends(function (err, friends) {
+      if (err) {
+        console.warn('[dashboard.js] err getting friends:', err)
+        next(err)
+      }
+      res.locals.friends = friends
+      next()
+    })
+  })
   .get(function (req, res, next) {
     console.log(req.path)
     console.log('user:', req.user)

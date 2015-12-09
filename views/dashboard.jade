@@ -1,5 +1,19 @@
 extends ./layout.jade
 
 block content
-  div.content
-    
+  div.content.dashboard
+    h1 Welcome
+    .card-wrapper
+      if friends > 0
+        each friend, idx in friends 
+          .card
+            +card(title='#{friend}', 'Ask', 'Nudge', 'Pester')
+              p Keep up to date with this here person. 
+              p Normally this would have their recent updates..
+      else 
+        .card
+          +card('Its lonely', ['Add a friend or two'])
+            p Looks like you could use a friend, or five. 
+            p Good news is you can add them!
+            p Just tap that button below to get started. 
+              i.material-icons mood

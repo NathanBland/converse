@@ -78,7 +78,7 @@ function authenticate (req, res, next) {
       }
       res.locals.user = user
       // console.log('[auth.js] user in auth:' + user);
-      var redirect = '/profile'
+      var redirect = '/dashboard'
       if (req.cookies.redirect) {
         redirect = req.cookies.redirect
         res.cookie('redirect', null, {maxAge: 0, expires: Date.now()})
@@ -114,7 +114,7 @@ function register (req, res, next) {
       }
       console.log(user)
       passport.authenticate('local')(req, res, function () {
-        return res.redirect('/profile')
+        return res.redirect('/dashboard')
       })
     })
   }

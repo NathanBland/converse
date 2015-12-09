@@ -59,13 +59,6 @@ app.use(session({
 }))
 app.use(routes)
 
-app.use(function (err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).render('error', {
-    title: 'Uh, Sorry'
-  })
-})
-
 // Run the server
 var server = app.listen(app.get('port'), app.get('ip'), function () {
   var address = server.address()

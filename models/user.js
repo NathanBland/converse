@@ -15,6 +15,10 @@ var User = mongoose.Schema({
   displayName: {
     type: String,
     required: false
+  },
+  notification_count: {
+    type: Number,
+    default: 0
   }
 })
 User.plugin(require('passport-local-mongoose'), {

@@ -9,6 +9,9 @@ router.route('/dashboard')
     next()
   })
   .get(function (req, res, next) {
+    
+  })
+  .get(function (req, res, next) {
     console.log(req.path)
     console.log('user:', req.user)
     return res.render('dashboard', {

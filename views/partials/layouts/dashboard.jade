@@ -10,7 +10,7 @@
         i.material-icons person
         | Add Friend
       a.mdl-navigation__link(href='/dashboard/notifications')
-        if notifications
+        if notifications > 0
           i.material-icons.mdl-badge(data-badge='#{notifications.length}') announcement
           | Notifications
         else

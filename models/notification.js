@@ -8,6 +8,8 @@ var Notification = mongoose.Schema({
     index: true
   },
   type: String,
+  title: String,
+  content: String,
   created: {
     type: Date,
     default: Date.now

@@ -1,3 +1,12 @@
+header.dashboard {
+  background-color: #4F4F4F;
+  color: white; }
+  header.dashboard nav.mdl-navigation .mdl-navigation__link {
+    color: white; }
+    header.dashboard nav.mdl-navigation .mdl-navigation__link:hover {
+      background-color: #3f51b5;
+      color: white; }
+
 header .mdl-layout__header-row .mdl-layout-title a {
   color: white;
   text-decoration: none; }
@@ -15,6 +24,14 @@ main.mdl-layout__content {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column; }
+  main.mdl-layout__content .card-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; }
+  main.mdl-layout__content .card {
+    flex: 1 1 auto;
+    margin: 1em; }
   main.mdl-layout__content .content .landing-login h4 {
     text-align: center; }
   main.mdl-layout__content .content form.signUp .mdl-card__actions, main.mdl-layout__content .content form.logIn .mdl-card__actions {

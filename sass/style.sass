@@ -1,4 +1,16 @@
+$primary-bg-color-1: #3f51b5
+$dashboard-bg-1: #4F4F4F
+
 header
+  &.dashboard
+    background-color: $dashboard-bg-1
+    color: white
+    nav.mdl-navigation
+      .mdl-navigation__link
+        color: white
+        &:hover
+          background-color: $primary-bg-color-1
+          color: white
   .mdl-layout__header-row
     .mdl-layout-title
       a

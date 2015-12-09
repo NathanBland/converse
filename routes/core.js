@@ -6,6 +6,9 @@ var router = module.exports = express.Router()
 
 // Routes
 router.get('/', function (req, res) {
+  if (req.user) {
+    return res.redirect('/dashboard')
+  }
   return res.render('index', {
     pagetitle: 'Home Page'
   })

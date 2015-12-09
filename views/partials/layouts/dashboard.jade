@@ -1,0 +1,10 @@
+.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer
+  header.mdl-layout__drawer.dashboard
+    span.mdl-layout-title #{sitename}
+    span.mdl-layout-title #{sitename}
+    nav.mdl-navigation
+      a.mdl-navigation__link(href='/logout') Sign Out
+  if notification
+    aside.notification(class='#{notification.severity}') #{notification.message}
+  main.mdl-layout__content
+    block content

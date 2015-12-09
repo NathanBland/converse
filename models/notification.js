@@ -7,7 +7,15 @@ var Notification = mongoose.Schema({
     required: true,
     index: true
   },
-  type: String
+  type: String,
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  viewed: {
+    type: Boolean,
+    default: false
+  }
 
 })
 

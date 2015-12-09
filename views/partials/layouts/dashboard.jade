@@ -10,12 +10,14 @@
         i.material-icons person
         | Add Friend
       a.mdl-navigation__link(href='/dashboard/notifications')
-        if notifications.new
-          i.material-icons.mdl-badge(data-badge='2') announcement
+        if notifications
+          i.material-icons.mdl-badge(data-badge='#{notifications.length}') announcement
           | Notifications
         else
           i.material-icons announcement
           | Notifications
+    .mdl-layout-spacer
+    nav.mdl-navigation
       a.mdl-navigation__link(href='/logout') 
         i.material-icons cancel
         | Sign Out

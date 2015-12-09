@@ -9,7 +9,14 @@ router.route('/dashboard')
     next()
   })
   .get(function (req, res, next) {
-    
+    req.user.findNotifications(function (err, notifications) {
+      if (err) {
+        console.warn('[dashboard.js] err getting notifications:', err)
+        next(err)
+      }
+      res.locals.notifications = notifications
+      next()
+    })
   })
   .get(function (req, res, next) {
     console.log(req.path)

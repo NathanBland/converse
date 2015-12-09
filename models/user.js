@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var Notifications = require('./notification')
 
 var User = mongoose.Schema({
   email: {
@@ -15,12 +16,20 @@ var User = mongoose.Schema({
   displayName: {
     type: String,
     required: false
-  },
-  notification_count: {
-    type: Number,
-    default: 0
   }
 })
+
+User.methods.findNotifications = function (callback) {
+  var query = Notifications.find({
+    user_id: this._id
+  })
+  if (callback) {
+    return query.where('viewed').equals(false).sort('-created').exec(callback)
+  } else {
+    return query
+  }
+}
+
 User.plugin(require('passport-local-mongoose'), {
   usernameField: 'email',
   usernameLowerCase: true,

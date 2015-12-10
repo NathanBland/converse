@@ -1,7 +1,8 @@
 var express = require('express')
 var router = module.exports = express.Router()
 
-router.route('/dashboard')
+// all these routes are prefixed with /dashboard
+router.route('/')
   .all(function (req, res, next) {
     if (!req.user) {
       return res.redirect('/login')
@@ -38,5 +39,11 @@ router.route('/dashboard')
     return res.render('dashboard', {
       pagetitle: 'Converse',
       user: req.user
+    })
+  })
+router.route('/friend/add')
+  .get(function (req, res, next) {
+    return res.render('add', {
+      title: 'Add a friend'
     })
   })

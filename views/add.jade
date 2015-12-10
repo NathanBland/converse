@@ -1,0 +1,17 @@
+extends ./layout.jade
+
+block content
+  div.content.dashboard
+    .card-wrapper.add
+      .card
+        form
+          +card('Add a Friend', ['Add'])
+            p Drop a friend's email address below to add them.
+            p They'll get a notification, and be given the option to add you as well.
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+              input#logIn__email.mdl-textfield__input(type='email',name='email',required='required')
+              label.mdl-textfield__label(for='logIn__email') Email
+            p If they aren't already on #{sitename}, we'll send them an invite.
+    .card-wrapper
+      include ./partials/dashboard/friends
+          

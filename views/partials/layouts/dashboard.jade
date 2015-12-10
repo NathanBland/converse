@@ -3,8 +3,9 @@
     span.mdl-layout-title
       a(href='/') #{sitename}
     span.mdl-layout-title.profile
-      i.material-icons account_circle
-      span #{user.displayName}
+      a(href='/profile')
+        i.material-icons account_circle
+          span #{user.username}
     nav.mdl-navigation
       a.mdl-navigation__link(href='/dashboard/friend/add') 
         i.material-icons person

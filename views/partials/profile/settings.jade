@@ -1,12 +1,12 @@
 .mdl-cell.mdl-cell--6-col
   h4 User Details
-  p Username: #{user}
+  p Username: #{user.username}
 .mdl-cell.mdl-cell--6-col
   h4 Email
   form
     .mdl-layout
       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-        input#signUp__email.mdl-textfield__input(type='text',name='username',value="#{email}")
+        input#signUp__email.mdl-textfield__input(type='text',name='username',value="#{user.email}")
         label.mdl-textfield__label(for='signUp__email') E-mail
     a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Change email
 .mdl-cell.mdl-cell--6-col

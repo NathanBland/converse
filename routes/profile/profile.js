@@ -9,10 +9,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false})
 
 // These routes are all prefixed by /profile
 router.get('/', urlencodedParser, function (req, res) {
-  console.log(req.path)
   res.render('profile', {
-    pagetitle: 'Profile',
-    user: req.user.username,
-    email: req.user.email
+    user: req.user
   })
 })

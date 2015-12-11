@@ -7,4 +7,4 @@ mixin card(title, actions)
     if actions
       .mdl-card__actions.mdl-card--border
         each action, idx in actions
-          a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect #{action}
+          button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(type='submit') #{action}

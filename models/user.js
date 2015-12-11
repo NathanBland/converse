@@ -19,6 +19,16 @@ var User = mongoose.Schema({
     required: false
   }
 })
+User.methods.addFriend = function (email, callback) {
+  var query = Friends.find({
+    email: email
+  })
+  if (callback) {
+    return query.where('added').equals(true).sort('-id').exec(callback)
+  } else {
+    return query
+  }
+}
 
 User.methods.findNotifications = function (callback) {
   var query = Notifications.find({

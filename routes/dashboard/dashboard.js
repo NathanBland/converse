@@ -44,6 +44,32 @@ router.route('/')
 router.route('/friend/add')
   .get(function (req, res, next) {
     return res.render('add', {
-      title: 'Add a friend'
+      title: 'Add a friend',
+      user: req.user
+    })
+  })
+  .post(function (req, res, next) {
+    if (!req.body.email) {
+      return res.render('add', {
+        title: 'Add a friend',
+        notification: {
+          severity: 'warn',
+          message: 'You have submit an email to add a friend!'
+        },
+        user: req.user
+      })
+    }
+    req.user.addFriend(req.body.email, function (err, friend) {
+      if (err) {
+        next(err)
+      }
+      console.log('[dashboard.js] friend notification sent:', friend)
+      return res.render('add', {
+        title: 'Add a friend',
+        notification: {
+          severity: 'success animated fadeOutUp',
+          message: 'We\'ve sent a request for you!'
+        }
+      })
     })
   })

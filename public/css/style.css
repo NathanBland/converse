@@ -28,6 +28,7 @@ header .mdl-layout__header-row .mdl-layout-title a {
   text-decoration: none; }
 
 aside.notification {
+  width: 100%;
   text-align: center;
   padding: 1em;
   font-size: 150%; }
@@ -67,6 +68,12 @@ main.mdl-layout__content {
   main.mdl-layout__content .content.dashboard {
     width: 100%;
     display: flex; }
+    main.mdl-layout__content .content.dashboard.error {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      main.mdl-layout__content .content.dashboard.error img {
+        margin-top: 1em; }
     main.mdl-layout__content .content.dashboard .add {
       margin-left: auto;
       margin-right: auto; }

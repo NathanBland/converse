@@ -36,6 +36,7 @@ header
         color: white
         text-decoration: none
 aside.notification
+  width: 100%
   text-align: center
   padding: 1em
   font-size: 150%
@@ -80,6 +81,12 @@ main.mdl-layout__content
     &.dashboard
       width: 100%
       display: flex
+      &.error
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        img
+          margin-top: 1em
       .add
         margin-left: auto
         margin-right: auto

@@ -22,7 +22,7 @@
       a.mdl-navigation__link(href='/logout') 
         i.material-icons cancel
         | Sign Out
-  if notification
-    aside.notification(class='#{notification.severity}') #{notification.message}
   main.mdl-layout__content
+    if notification
+      aside.notification(class='#{notification.severity}') #{notification.message}
     block content

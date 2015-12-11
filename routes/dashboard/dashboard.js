@@ -44,6 +44,7 @@ router.route('/')
 router.route('/friend/add')
   .get(function (req, res, next) {
     return res.render('add', {
-      title: 'Add a friend'
+      title: 'Add a friend',
+      user: req.user
     })
   })

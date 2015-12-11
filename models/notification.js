@@ -9,7 +9,7 @@ var Notification = mongoose.Schema({
   },
   type: String,
   title: String,
-  content: String,
+  content: Object,
   created: {
     type: Date,
     default: Date.now

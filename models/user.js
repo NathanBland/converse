@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var Notifications = require('./notification')
+var Notification = require('./notification')
 var Friends = require('./friend')
 
 var User = mongoose.Schema({
@@ -23,15 +23,38 @@ User.methods.addFriend = function (email, callback) {
   var query = Friends.find({
     email: email
   })
-  if (callback) {
-    return query.where('added').equals(true).sort('-id').exec(callback)
-  } else {
-    return query
-  }
+  query.where('added').equals(true).sort('-id').exec(function (err, frinedReq) {
+    if (err) {
+      throw err
+    }
+    if (frinedReq === []) {
+      console.log('[user.js] No existing friend request')
+      User.findOne({email: email}).exec(function (err, friend) {
+        if (err) {
+          throw err
+        }
+        var request = new Notification({
+          user_id: friend._id,
+          type: 'request',
+          title: 'New Friend Request',
+          content: {
+            created_by: this._id,
+            message: this.displayName + ' added you as a friend!'
+          }
+        })
+
+      })
+
+    } else {
+      console.log('[user.js] Friend request already exists:', frinedReq)
+      return true
+    }
+  })
+
 }
 
 User.methods.findNotifications = function (callback) {
-  var query = Notifications.find({
+  var query = Notification.find({
     user_id: this._id
   })
   if (callback) {

@@ -4,7 +4,7 @@ block content
   div.content.dashboard
     .card-wrapper.add
       .card
-        form
+        form(method='POST')
           +card('Add a Friend', ['Add'])
             p Drop a friend's email address below to add them.
             p They'll get a notification, and be given the option to add you as well.

@@ -1,6 +1,7 @@
 $primary-bg-color-1: #3f51b5
 $dashboard-bg-1: #262A3C
 $error-primary-1: rgb(244, 67, 54)
+$warn-primary-1: rgb(244, 169, 54)
 
 header
   &.dashboard
@@ -40,10 +41,14 @@ aside.notification
   text-align: center
   padding: 1em
   font-size: 150%
+  color: white
+  animation-delay: 2s
   &.error
     background-color: $error-primary-1
-    color: white
-
+  &.warn
+    background-color: $warn-primary-1
+  &.success
+    background-color: green
 main.mdl-layout__content
   display: flex
   justify-content: flex-start

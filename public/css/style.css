@@ -31,10 +31,15 @@ aside.notification {
   width: 100%;
   text-align: center;
   padding: 1em;
-  font-size: 150%; }
+  font-size: 150%;
+  color: white;
+  animation-delay: 2s; }
   aside.notification.error {
-    background-color: #f44336;
-    color: white; }
+    background-color: #f44336; }
+  aside.notification.warn {
+    background-color: #f4a936; }
+  aside.notification.success {
+    background-color: green; }
 
 main.mdl-layout__content {
   display: flex;

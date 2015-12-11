@@ -59,11 +59,11 @@ router.route('/friend/add')
         user: req.user
       })
     }
-    req.user.addFriend(req.body.email, function (err, friend) {
+    req.user.addFriend(req.body.email, function (err, notification) {
       if (err) {
         next(err)
       }
-      console.log('[dashboard.js] friend notification sent:', friend)
+      console.log('[dashboard.js] friend notification sent:', notification)
       return res.render('add', {
         title: 'Add a friend',
         notification: {

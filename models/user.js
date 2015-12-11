@@ -19,21 +19,25 @@ var User = mongoose.Schema({
     required: false
   }
 })
+
 User.methods.addFriend = function (email, callback) {
   var query = Friends.find({
+    email: email
+  })
+  var getUser = this.db.model('User').find({
     email: email
   })
   query.where('added').equals(true).sort('-id').exec(function (err, frinedReq) {
     if (err) {
       throw err
     }
-    if (frinedReq === []) {
+    if (frinedReq.length < 1) {
       console.log('[user.js] No existing friend request')
-      User.findOne({email: email}).exec(function (err, friend) {
+      getUser.exec(function (err, friend) {
         if (err) {
           throw err
         }
-        var request = new Notification({
+        return Notification.create({
           user_id: friend._id,
           type: 'request',
           title: 'New Friend Request',
@@ -41,16 +45,13 @@ User.methods.addFriend = function (email, callback) {
             created_by: this._id,
             message: this.displayName + ' added you as a friend!'
           }
-        })
-
+        }, callback)
       })
-
     } else {
       console.log('[user.js] Friend request already exists:', frinedReq)
-      return true
+      return callback
     }
   })
-
 }
 
 User.methods.findNotifications = function (callback) {
@@ -74,11 +75,9 @@ User.methods.findFriends = function (callback) {
     return query
   }
 }
-
 User.plugin(require('passport-local-mongoose'), {
   usernameField: 'email',
   usernameLowerCase: true,
   usernameQueryFields: ['email']
 })
-
 module.exports = mongoose.model('user', User)

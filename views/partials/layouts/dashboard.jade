@@ -1,0 +1,28 @@
+.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer
+  header.mdl-layout__drawer.dashboard
+    span.mdl-layout-title
+      a(href='/') #{sitename}
+    span.mdl-layout-title.profile
+      a(href='/profile')
+        i.material-icons account_circle
+        span #{user.displayName}
+    nav.mdl-navigation
+      a.mdl-navigation__link(href='/dashboard/friend/add') 
+        i.material-icons person_add
+        | Add Friend
+      a.mdl-navigation__link(href='/dashboard/notifications')
+        if notifications > 0
+          i.material-icons.mdl-badge(data-badge='#{notifications.length}') announcement
+          | Notifications
+        else
+          i.material-icons announcement
+          | Notifications
+    .mdl-layout-spacer
+    nav.mdl-navigation
+      a.mdl-navigation__link(href='/logout') 
+        i.material-icons cancel
+        | Sign Out
+  main.mdl-layout__content
+    if notification
+      aside.notification(class='#{notification.severity}') #{notification.message}
+    block content

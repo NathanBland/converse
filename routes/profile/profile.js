@@ -13,3 +13,8 @@ router.get('/', urlencodedParser, function (req, res) {
     user: req.user
   })
 })
+
+router.post('/profile/displayname', urlencodedParser, function (req, res) {
+  console.log(req.body.displayName)
+  res.redirect('/profile')
+})

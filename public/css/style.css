@@ -28,12 +28,18 @@ header .mdl-layout__header-row .mdl-layout-title a {
   text-decoration: none; }
 
 aside.notification {
+  width: 100%;
   text-align: center;
   padding: 1em;
-  font-size: 150%; }
+  font-size: 150%;
+  color: white;
+  animation-delay: 2s; }
   aside.notification.error {
-    background-color: #f44336;
-    color: white; }
+    background-color: #f44336; }
+  aside.notification.warn {
+    background-color: #f4a936; }
+  aside.notification.success {
+    background-color: green; }
 
 main.mdl-layout__content {
   display: flex;
@@ -64,6 +70,22 @@ main.mdl-layout__content {
     flex-direction: column;
     align-items: center;
     margin: 1em; }
+  main.mdl-layout__content .content.dashboard {
+    width: 100%;
+    display: flex; }
+    main.mdl-layout__content .content.dashboard.error {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      main.mdl-layout__content .content.dashboard.error img {
+        margin-top: 1em; }
+    main.mdl-layout__content .content.dashboard .add {
+      margin-left: auto;
+      margin-right: auto; }
+  main.mdl-layout__content .content .friends {
+    flex: 1 1 75%; }
+  main.mdl-layout__content .content .stream {
+    flex: 1 1 25%; }
 
 footer .mdl-mini-footer__right-section button.mdl-mini-footer__social-btn {
   margin-left: .5em;

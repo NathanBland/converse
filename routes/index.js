@@ -5,6 +5,7 @@ var router = module.exports = express.Router()
 
 router.use(require('./auth'))
 router.use(require('./core'))
+router.use(require('./reset'))
 router.use(require('./dashboard/dashboard'), ensureLoggedIn('/login'))
 router.use('/profile', require('./profile'), ensureLoggedIn('/login'))
 router.use(require('./error'))

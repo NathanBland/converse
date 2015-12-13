@@ -14,14 +14,6 @@ router.get('/', function (req, res) {
   })
 })
 
-router.get('/forgot', function (req, res) {
-  if (!req.user) {
-    res.render('forgot')
-  } else {
-    res.redirect('/')
-  }
-})
-
 router.get('/privacy', function (req, res) {
   return res.render('infopages/privacy')
 })

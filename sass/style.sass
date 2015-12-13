@@ -54,23 +54,20 @@ main.mdl-layout__content
   justify-content: flex-start
   align-items: center
   flex-direction: column
-  .card-wrapper
-    display: flex
-    flex-direction: row
-    flex-wrap: wrap
-    justify-content: center
-  .card
-    flex: 1 1 auto
-    margin: 1em
   .error_img
     max-width: 90%
 
   .card-wrapper
     display: flex
-    align-items: felx-start
+    flex-direction: row
+    align-items: flex-start
+    flex-wrap: wrap
+    justify-content: center
     .card
       margin: 8px
-      width: 50%
+      flex-grow: 1
+      flex-shrink: 1
+      flex-basis: auto
 
   .content
     .landing-login

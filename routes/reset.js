@@ -1,5 +1,5 @@
 var express = require('express')
-// var nodemailer = require('nodemailer')
+var nodemailer = require('nodemailer')
 var User = require('../models/user')
 
 var router = module.exports = express.Router()

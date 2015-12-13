@@ -11,3 +11,9 @@ form.logIn(action='/login', method='post')
         label.mdl-textfield__label(for='logIn__password') Password
     .mdl-card__actions
       button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored(type='submit') Log In
+    .mdl-card__menu
+      button#reset-menu.mdl-button.mdl-js-button.mdl-button--icon
+        i.material-icons help_outline
+    ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for="reset-menu")
+      li.mdl-menu__item
+        a.mdl-menu__item(href='/forgot') Forgot Password

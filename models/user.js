@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
-var Notification = require('./notification')
+var passportLocalMongoose = require('passport-local-mongoose')
+var Notifications = require('./notification')
 var Friends = require('./friend')
 
 var User = mongoose.Schema({
@@ -17,7 +18,9 @@ var User = mongoose.Schema({
   displayName: {
     type: String,
     required: false
-  }
+  },
+  resetToken: String,
+  resetExpires: Date
 })
 
 User.methods.addFriend = function (email, callback) {
@@ -75,7 +78,8 @@ User.methods.findFriends = function (callback) {
     return query
   }
 }
-User.plugin(require('passport-local-mongoose'), {
+
+User.plugin(passportLocalMongoose, {
   usernameField: 'email',
   usernameLowerCase: true,
   usernameQueryFields: ['email']

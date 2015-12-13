@@ -2,6 +2,7 @@ $primary-bg-color-1: #3f51b5
 $dashboard-bg-1: #262A3C
 $error-primary-1: rgb(244, 67, 54)
 $warn-primary-1: rgb(244, 169, 54)
+$success-primary-1: green
 
 header
   &.dashboard
@@ -48,32 +49,36 @@ aside.notification
   &.warn
     background-color: $warn-primary-1
   &.success
-    background-color: green
+    background-color: $success-primary-1
 main.mdl-layout__content
   display: flex
   justify-content: flex-start
   align-items: center
   flex-direction: column
+  .error_img
+    max-width: 90%
+
   .card-wrapper
     display: flex
     flex-direction: row
+    align-items: flex-start
     flex-wrap: wrap
     justify-content: center
-  .card
-    flex: 1 1 auto
-    margin: 1em
-  .error_img
-    max-width: 90%
+    .card
+      margin: 8px
+      flex-grow: 1
+      flex-shrink: 1
+      flex-basis: auto
 
   .content
     .landing-login
       h4
         text-align: center
     form.signUp, form.logIn
-          .mdl-card__actions
-            display: flex
-            flex-direction: row
-            justify-content: center
+      .mdl-card__actions
+        display: flex
+        flex-direction: row
+        justify-content: center
     form.signUp
       display: flex
       flex-direction: column

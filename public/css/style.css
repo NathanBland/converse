@@ -46,16 +46,19 @@ main.mdl-layout__content {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column; }
+  main.mdl-layout__content .error_img {
+    max-width: 90%; }
   main.mdl-layout__content .card-wrapper {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: center; }
-  main.mdl-layout__content .card {
-    flex: 1 1 auto;
-    margin: 1em; }
-  main.mdl-layout__content .error_img {
-    max-width: 90%; }
+    main.mdl-layout__content .card-wrapper .card {
+      margin: 8px;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: auto; }
   main.mdl-layout__content .content .landing-login h4 {
     text-align: center; }
   main.mdl-layout__content .content form.signUp .mdl-card__actions, main.mdl-layout__content .content form.logIn .mdl-card__actions {

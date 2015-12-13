@@ -7,7 +7,7 @@ router.use(function (req, res) {
   res.status(404).render('error', {
     notification: {
       severity: 'error',
-      message: 'Aw man, you weren\'t supposed to see this...'
+      message: "You weren't supposed to see this."
     },
     user: req.user,
     title: '404 - Page not found'
@@ -18,9 +18,9 @@ router.use(function (err, req, res, next) {
   res.status(500).render('error', {
     notification: {
       severity: 'error',
-      message: 'Aw man, you weren\'t supposed to see this...'
+      message: "You weren't supposed to see this."
     },
     user: req.user,
-    title: 'Uh, Sorry'
+    title: '500 - Internal error'
   })
 })

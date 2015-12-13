@@ -9,10 +9,42 @@ var urlencodedParser = bodyParser.urlencoded({extended: false})
 
 // These routes are all prefixed by /profile
 router.get('/', urlencodedParser, function (req, res) {
-  console.log(req.path)
+  console.log(req.user)
   res.render('profile', {
-    pagetitle: 'Profile',
-    user: req.user.username,
-    email: req.user.email
+    user: req.user
   })
+})
+
+router.post('/displayname', urlencodedParser, function (req, res) {
+  req.user.set({
+    displayName: req.body.displayname
+  })
+  req.user.save(function (err, user) {
+    if (err) {
+      console.warn(err)
+    }
+    return res.redirect('/profile')
+  })
+})
+
+router.post('/password', urlencodedParser, function (req, res) {
+  console.log(req.body)
+  res.redirect('/profile')
+})
+
+router.post('/email', urlencodedParser, function (req, res) {
+  req.user.set({
+    email: req.body.email
+  })
+  req.user.save(function (err, user) {
+    if (err) {
+      console.warn(err)
+    }
+    return res.redirect('/profile')
+  })
+})
+
+router.post('/details', urlencodedParser, function (req, res) {
+  console.log(req.body)
+  res.redirect('/profile')
 })

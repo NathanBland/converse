@@ -4,12 +4,12 @@ block content
   .mdl-cell.mdl-cell--8-col.mdl-cell--4-phone
     .mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect
       .mdl-tabs__tab-bar
-        a.mdl-tabs__tab.is-active(href="#public-panel") Public
+        a.mdl-tabs__tab(href="#public-panel") Public
         a.mdl-tabs__tab(href="#private-panel") Private
-        a.mdl-tabs__tab(href="#settings-panel") Settings
-      .mdl-tabs__panel.is-active(id="public-panel")
+        a.mdl-tabs__tab.is-active(href="#settings-panel") Settings
+      .mdl-tabs__panel(id="public-panel")
         include ./partials/profile/public
       .mdl-tabs__panel(id="private-panel")
         include ./partials/profile/private
-      .mdl-tabs__panel(id="settings-panel")
+      .mdl-tabs__panel.is-active(id="settings-panel")
         include ./partials/profile/settings

@@ -78,12 +78,8 @@ User.methods.findFriends = function (callback) {
     return query
   }
 }
-<<<<<<< HEAD
 
 User.plugin(passportLocalMongoose, {
-=======
-User.plugin(require('passport-local-mongoose'), {
->>>>>>> upstream/master
   usernameField: 'email',
   usernameLowerCase: true,
   usernameQueryFields: ['email']

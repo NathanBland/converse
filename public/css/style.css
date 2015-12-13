@@ -48,6 +48,12 @@ main.mdl-layout__content {
   flex-direction: column; }
   main.mdl-layout__content .error_img {
     max-width: 90%; }
+  main.mdl-layout__content .card-wrapper {
+    display: flex;
+    align-items: felx-start; }
+    main.mdl-layout__content .card-wrapper .card {
+      margin: 8px;
+      width: 50%; }
   main.mdl-layout__content .content .landing-login h4 {
     text-align: center; }
   main.mdl-layout__content .content form.signUp .mdl-card__actions, main.mdl-layout__content .content form.logIn .mdl-card__actions {

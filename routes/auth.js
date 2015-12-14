@@ -10,9 +10,7 @@ router.use(passport.initialize())
 router.use(passport.session())
 router.use(function (req, res, next) {
   if (req.user) {
-    res.locals.user = {
-      username: req.user.username
-    }
+    res.locals.user = req.user
   }
   next()
 })

@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var Notification = mongoose.Schema({
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'user',
     required: true,
     index: true
   },

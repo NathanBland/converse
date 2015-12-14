@@ -34,11 +34,11 @@ router.route('/')
     })
   })
   .get(function (req, res, next) {
-    console.log(req.path)
-    console.log('user:', req.user)
+    console.log('[dashboard.js] ', req.path)
+    console.log('[dashboard.js] user:', req.user)
+    console.log('[dashboard.js] locals:', res.locals)
     return res.render('dashboard', {
-      pagetitle: 'Converse',
-      user: req.user
+      pagetitle: 'Converse'
     })
   })
 router.route('/friend/add')
@@ -54,7 +54,7 @@ router.route('/friend/add')
         title: 'Add a friend',
         notification: {
           severity: 'warn',
-          message: 'You have submit an email to add a friend!'
+          message: 'You have to submit an email to add a friend!'
         },
         user: req.user
       })
@@ -63,13 +63,15 @@ router.route('/friend/add')
       if (err) {
         next(err)
       }
+      console.log('[dashboard.js] user:', req.user.displayName)
       console.log('[dashboard.js] friend notification sent:', notification)
       return res.render('add', {
         title: 'Add a friend',
         notification: {
           severity: 'success animated fadeOutUp',
           message: 'We\'ve sent a request for you!'
-        }
+        },
+        user: req.user
       })
     })
   })

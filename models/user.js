@@ -24,6 +24,7 @@ var User = mongoose.Schema({
 })
 
 User.methods.addFriend = function (email, callback) {
+  var user = this
   var query = Friends.find({
     email: email
   })
@@ -35,6 +36,7 @@ User.methods.addFriend = function (email, callback) {
       throw err
     }
     if (foundUser) {
+      console.log('[user.js] From user:', user)
       console.log('[user.js] User found:', foundUser)
       console.log('[user.js] Checking for existing friend request')
       query.where('added').equals(true).sort('-id').exec(function (err, friendReq) {
@@ -49,8 +51,8 @@ User.methods.addFriend = function (email, callback) {
             type: 'request',
             title: 'New Friend Request',
             content: {
-              created_by: this._id,
-              message: this.displayName + ' added you as a friend!'
+              created_by: user._id,
+              message: user.displayName + ' added you as a friend!'
             }
           })
           console.log('[user.js] notification created:', notif)

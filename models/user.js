@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var passportLocalMongoose = require('passport-local-mongoose')
-var Notifications = require('./notification')
+var Notification = require('./notification')
 var Friends = require('./friend')
 
 var User = mongoose.Schema({

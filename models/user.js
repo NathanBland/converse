@@ -35,37 +35,32 @@ User.methods.addFriend = function (email, callback) {
     if (err) {
       throw err
     }
-    if (foundUser) {
-      console.log('[user.js] From user:', user)
-      console.log('[user.js] User found:', foundUser)
-      console.log('[user.js] Checking for existing friend request')
-      query.where('added').equals(true).sort('-id').exec(function (err, friendReq) {
-        if (err) {
-          return err
-        }
-        if (friendReq.length < 1) {
-          console.log('[user.js] No existing friend request')
-          console.log('[user.js] creaing notification for user:', foundUser)
-          var notif = new Notification({
-            user_id: foundUser._id,
-            type: 'request',
-            title: 'New Friend Request',
-            content: {
-              created_by: user._id,
-              message: user.displayName + ' added you as a friend!'
-            }
-          })
-          console.log('[user.js] notification created:', notif)
-          return notif.save(callback)
-        } else {
-          console.log('[user.js] Friend request already exists:', friendReq)
-          return callback
-        }
-      })
-    } else {
-      console.log('[user.js] No user exists, need to implement email sending.')
-      return callback
-    }
+    console.log('[user.js] From user:', user)
+    console.log('[user.js] User found:', foundUser)
+    console.log('[user.js] Checking for existing friend request')
+    query.where('added').equals(true).sort('-id').exec(function (err, friendReq) {
+      if (err) {
+        return err
+      }
+      if (friendReq.length < 1) {
+        console.log('[user.js] No existing friend request')
+        console.log('[user.js] creaing notification for user:', foundUser)
+        var notif = new Notification({
+          user_email: foundUser.email || email,
+          type: 'request',
+          title: 'New Friend Request',
+          content: {
+            created_by: user._id,
+            message: user.displayName + ' added you as a friend!'
+          }
+        })
+        console.log('[user.js] notification created:', notif)
+        return notif.save(callback)
+      } else {
+        console.log('[user.js] Friend request already exists:', friendReq)
+        return callback
+      }
+    })
   })
 }
 

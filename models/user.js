@@ -46,7 +46,7 @@ User.methods.addFriend = function (email, callback) {
         console.log('[user.js] No existing friend request')
         console.log('[user.js] creaing notification for user:', foundUser)
         var notif = new Notification({
-          user_email: foundUser.email || email,
+          user_email: email,
           type: 'request',
           title: 'New Friend Request',
           content: {
@@ -58,7 +58,7 @@ User.methods.addFriend = function (email, callback) {
         return notif.save(callback)
       } else {
         console.log('[user.js] Friend request already exists:', friendReq)
-        return callback
+        return true
       }
     })
   })
@@ -66,7 +66,7 @@ User.methods.addFriend = function (email, callback) {
 
 User.methods.findNotifications = function (callback) {
   var query = Notification.find({
-    user_id: this._id
+    user_email: this.email
   })
   if (callback) {
     return query.where('viewed').equals(false).sort('-created').exec(callback)

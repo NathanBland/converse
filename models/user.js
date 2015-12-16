@@ -46,13 +46,13 @@ User.methods.confirmFriend = function (person, callback) {
           viewed: true
         })
         console.log('[user.js](confirmFriend) person:', person)
-        user.friends.push({user_id: person})
+        user.friends.push(person)
         user.save(function (err) {
           if (err) {
             return err
           }
           console.log('[user.js](confirmFriend) this user._id:', user._id)
-          foundUser.friends.push({user_id: user._id})
+          foundUser.friends.push(user._id)
           foundUser.save(function (err) {
             if (err) {
               return err

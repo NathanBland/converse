@@ -1,9 +1,8 @@
 var mongoose = require('mongoose')
 
 var Notification = mongoose.Schema({
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+  user_email: {
+    type: String,
     required: true,
     index: true
   },

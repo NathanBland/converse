@@ -55,7 +55,7 @@ main.mdl-layout__content {
     flex-wrap: wrap;
     justify-content: center; }
     main.mdl-layout__content .card-wrapper .card {
-      margin: 8px;
+      margin: 1em;
       flex-grow: 1;
       flex-shrink: 1;
       flex-basis: auto; }

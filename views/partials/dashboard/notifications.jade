@@ -1,0 +1,15 @@
+extends ../../layout.jade
+
+block content
+  div.content.dashboard
+    .card-wrapper
+      if notifications.length > 0
+        each notification, idx in notifications
+          .card
+            +card(notification.title, ['Respond', 'Ignore'])
+              p= notification.content.message
+      else
+        .card
+          +card('You have no notifications')
+            p Doesn't look like you currently have any notifications.
+            p Try asking your friends for updates!

@@ -62,13 +62,13 @@ main.mdl-layout__content
     display: flex
     flex-direction: row
     align-items: flex-start
+    align-content: flex-start
     flex-wrap: wrap
-    justify-content: center
+    justify-content: flex-start
+    width: 90%
     .card
       margin: 1em
-      flex-grow: 1
-      flex-shrink: 1
-      flex-basis: auto
+      flex-grow: 0 1 auto
 
   .content
     .landing-login
@@ -89,6 +89,9 @@ main.mdl-layout__content
       flex-direction: column
       align-items: center
       margin: 1em
+    .mdl-card__actions.request
+      display: flex
+      flex-direction: row
     &.dashboard
       width: 100%
       display: flex
@@ -101,6 +104,8 @@ main.mdl-layout__content
       .add
         margin-left: auto
         margin-right: auto
+      &.notifications
+        justify-content: center
     .friends
       flex: 1 1 75%
     .stream

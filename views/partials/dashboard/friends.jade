@@ -1,6 +1,6 @@
-if friends > 0
+if friends.length > 0
   each friend, idx in friends 
     .card
-      +card(friend, 'Ask', 'Nudge', 'Pester')
+      +card(friend.displayName, ['Ask', 'Nudge', 'Pester'])
         p Keep up to date with this here person. 
         p Normally this would have their recent updates..

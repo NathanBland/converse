@@ -22,7 +22,7 @@ router.use(function (req, res, next) { // grab notifications
 
         next(err)
       }
-      console.warn('[auth.js] notifications:', notifications)
+      // console.warn('[auth.js] notifications:', notifications)
       res.locals.notifications = notifications
       next()
     })
@@ -37,7 +37,7 @@ router.use(function (req, res, next) { // grab friends
         console.warn('[auth.js] err getting friends:', err)
         next(err)
       }
-      res.locals.friends = friends
+      res.locals.friends = friends.friends
       next()
     })
   } else {

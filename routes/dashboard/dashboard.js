@@ -12,7 +12,7 @@ router.use(function (req, res, next) {
 router.route('/')
   .get(function (req, res, next) {
     console.log('[dashboard.js] ', req.path)
-    console.log('[dashboard.js] user:', req.user)
+    // console.log('[dashboard.js] user:', req.user)
     console.log('[dashboard.js] locals:', res.locals)
     return res.render('dashboard', {
       pagetitle: 'Converse'
@@ -44,13 +44,37 @@ router.route('/friend/add')
       if (err) {
         next(err)
       }
-      console.log('[dashboard.js] user:', req.user.displayName)
       console.log('[dashboard.js] friend notification sent:', notification)
       return res.render('add', {
         title: 'Add a friend',
         notification: {
           severity: 'success animated fadeOutUp',
           message: 'We\'ve sent a request for you!'
+        }
+      })
+    })
+  })
+router.route('/friend/confirm')
+  .post(function (req, res, next) {
+    if (!req.body.person) {
+      return res.render('partials/dashboard/notifications', {
+        title: 'Your Notifications',
+        notification: {
+          severity: 'warn',
+          message: 'Something went wrong, please try again'
+        }
+      })
+    }
+    req.user.confirmFriend(req.body.person, function (err, friend) {
+      if (err) {
+        next(err)
+      }
+      console.log('[dashboard.js] friend added:', friend)
+      return res.render('partials/dashboard/notifications', {
+        title: 'Your Notifications',
+        notification: {
+          severity: 'success',
+          message: 'You added ' + friend.displayName + ' to your friends!'
         }
       })
     })

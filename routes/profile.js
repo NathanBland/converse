@@ -37,3 +37,16 @@ router.post('/email', function (req, res) {
     return res.redirect('/profile')
   })
 })
+
+router.post('/delete', function (req, res) {
+  if (req.body.delConfirm === 'sadface') {
+    req.user.remove(function (err) {
+      if (err) {
+        console.warn(err)
+      }
+      res.redirect('/')
+    })
+  } else {
+    res.redirect('/')
+  }
+})

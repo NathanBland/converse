@@ -1,12 +1,13 @@
 .card.mdl-card.mdl-shadow--2dp
   .mdl-card__title
     .mdl-card__title-text Email
-  .mdl-card__supporting-text
-    form(method='post' action='profile/email')
+  form(method='post' action='profile/email')
+    .mdl-card__supporting-text
       .mdl-layout
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
           input#settings__email.mdl-textfield__input(type='text',name='email',value="#{user.email}")
           label.mdl-textfield__label(for='settings__email') E-mail
+    .mdl-card__actions.mdl-card--border
       button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(type='submit') Save
   .mdl-card__menu
     button.mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect

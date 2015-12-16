@@ -1,14 +1,7 @@
 var mongoose = require('mongoose')
 var passportLocalMongoose = require('passport-local-mongoose')
 var Notification = require('./notification')
-var Friend = mongoose.Schema({
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true,
-    index: true
-  }
-})
+
 var User = mongoose.Schema({
   email: {
     type: String,
@@ -25,7 +18,11 @@ var User = mongoose.Schema({
     type: String,
     required: false
   },
-  friends: [Friend],
+  friends: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    index: true
+  }],
   resetToken: String,
   resetExpires: Date
 })
@@ -36,7 +33,7 @@ User.methods.confirmFriend = function (person, callback) {
     if (err) {
       throw err
     }
-    console.log('[user.js](confirmFriend) person:', person)
+
     console.log('[user.js](confirmFriend) foundUser:', foundUser)
     var checkRequestExists = Notification.findOne({user_email: user.email,
       type: 'request', 'content.created_by': foundUser._id})
@@ -48,11 +45,13 @@ User.methods.confirmFriend = function (person, callback) {
         request.set({
           viewed: true
         })
+        console.log('[user.js](confirmFriend) person:', person)
         user.friends.push({user_id: person})
         user.save(function (err) {
           if (err) {
             return err
           }
+          console.log('[user.js](confirmFriend) this user._id:', user._id)
           foundUser.friends.push({user_id: user._id})
           foundUser.save(function (err) {
             if (err) {
@@ -126,15 +125,9 @@ User.methods.findNotifications = function (callback) {
 }
 
 User.methods.findFriends = function (callback) {
-  var query = this.model('user').findOne({
-    _id: this._id
-  })
-  .populate('user')
-  if (callback) {
-    return query.sort('-id').exec(callback)
-  } else {
-    return query
-  }
+  return this.model('user').populate(this, {
+    path: 'friends'
+  }, callback)
 }
 
 User.plugin(passportLocalMongoose, {

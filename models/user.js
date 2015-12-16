@@ -1,7 +1,14 @@
 var mongoose = require('mongoose')
 var passportLocalMongoose = require('passport-local-mongoose')
 var Notification = require('./notification')
-
+var Friend = mongoose.Schema({
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: true,
+    index: true
+  }
+})
 var User = mongoose.Schema({
   email: {
     type: String,
@@ -18,17 +25,53 @@ var User = mongoose.Schema({
     type: String,
     required: false
   },
-  friends: [{
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-      index: true
-    }}],
+  friends: [Friend],
   resetToken: String,
   resetExpires: Date
 })
-
+User.methods.confirmFriend = function (person, callback) {
+  var user = this
+  var getuser = this.model('user').findOne({_id: person})
+  getuser.exec(function (err, foundUser) {
+    if (err) {
+      throw err
+    }
+    console.log('[user.js](confirmFriend) person:', person)
+    console.log('[user.js](confirmFriend) foundUser:', foundUser)
+    var checkRequestExists = Notification.findOne({user_email: user.email,
+      type: 'request', 'content.created_by': foundUser._id})
+    checkRequestExists.exec(function (err, request) {
+      if (err) {
+        throw err
+      }
+      if (request) {
+        request.set({
+          viewed: true
+        })
+        user.friends.push({user_id: person})
+        user.save(function (err) {
+          if (err) {
+            return err
+          }
+          foundUser.friends.push({user_id: user._id})
+          foundUser.save(function (err) {
+            if (err) {
+              return err
+            }
+            request.save(function (err) {
+              if (err) {
+                return err
+              }
+              return callback(null, foundUser)
+            })
+          })
+        })
+      } else {
+        return callback('No request existed', null)
+      }
+    })
+  })
+}
 User.methods.addFriend = function (email, callback) {
   var user = this
   var getUser = this.model('user').findOne()
@@ -83,11 +126,12 @@ User.methods.findNotifications = function (callback) {
 }
 
 User.methods.findFriends = function (callback) {
-  var query = Friends.find({
-    user_id: this._id
+  var query = this.model('user').findOne({
+    _id: this._id
   })
+  .populate('user')
   if (callback) {
-    return query.where('added').equals(true).sort('-id').exec(callback)
+    return query.sort('-id').exec(callback)
   } else {
     return query
   }

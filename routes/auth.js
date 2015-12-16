@@ -22,7 +22,7 @@ router.use(function (req, res, next) { // grab notifications
 
         next(err)
       }
-      console.warn('[auth.js] notifications:', notifications)
+      // console.warn('[auth.js] notifications:', notifications)
       res.locals.notifications = notifications
       next()
     })
@@ -30,19 +30,20 @@ router.use(function (req, res, next) { // grab notifications
     next()
   }
 })
-/*  if (req.user) {
+router.use(function (req, res, next) { // grab friends
+  if (req.user) {
     req.user.findFriends(function (err, friends) {
       if (err) {
         console.warn('[auth.js] err getting friends:', err)
         next(err)
       }
-      res.locals.friends = friends
+      res.locals.friends = friends.friends
       next()
     })
   } else {
     next()
   }
-})*/
+})
 // setup our routes.
 router.get('/signup', signup)
 router.get('/login', login)

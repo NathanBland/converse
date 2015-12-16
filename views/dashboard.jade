@@ -3,7 +3,7 @@ extends ./layout.jade
 block content
   div.content.dashboard
     .card-wrapper.friends
-      if friends > 0
+      if friends.length > 0
         include ./partials/dashboard/friends
       else 
         .card

@@ -75,6 +75,9 @@ main.mdl-layout__content {
     flex-direction: column;
     align-items: center;
     margin: 1em; }
+  main.mdl-layout__content .content .mdl-card__actions.request {
+    display: flex;
+    flex-direction: row; }
   main.mdl-layout__content .content.dashboard {
     width: 100%;
     display: flex; }

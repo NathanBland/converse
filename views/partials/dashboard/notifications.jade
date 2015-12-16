@@ -6,8 +6,11 @@ block content
       if notifications.length > 0
         each notification, idx in notifications
           .card
-            +card(notification.title, ['Respond', 'Ignore'])
-              p= notification.content.message
+            if notification.type === 'request'
+              include ./friendRequest
+            else
+              +card(notification.title, ['Respond', 'Ignore'])
+                p= notification.content.message
       else
         .card
           +card('You have no notifications')

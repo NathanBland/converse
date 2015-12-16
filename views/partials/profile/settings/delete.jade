@@ -1,0 +1,12 @@
+.card.mdl-card.mdl-shadow--2dp
+  .mdl-card__title
+    h2.mdl-card__title-text Delete Account
+  form(method='post' action='profile/delete')
+    .mdl-card__supporting-text
+      p It is a sad day indeed. Please type "sadface" below to confirm.
+      .mdl-layout
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          input#settings__delConfirm.mdl-textfield__input(type='text',name='delConfirm')
+          label.mdl-textfield__label(for='settings__email') Confirm
+    .mdl-card__actions.mdl-card--border
+      button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(type='submit') Just do it

@@ -30,8 +30,7 @@ router.use(function (req, res, next) { // grab notifications
     next()
   }
 })
-router.use(function (req, res, next) { // grab friends
-  if (req.user) {
+/*  if (req.user) {
     req.user.findFriends(function (err, friends) {
       if (err) {
         console.warn('[auth.js] err getting friends:', err)
@@ -43,7 +42,7 @@ router.use(function (req, res, next) { // grab friends
   } else {
     next()
   }
-})
+})*/
 // setup our routes.
 router.get('/signup', signup)
 router.get('/login', login)

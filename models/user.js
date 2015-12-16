@@ -1,7 +1,6 @@
 var mongoose = require('mongoose')
 var passportLocalMongoose = require('passport-local-mongoose')
 var Notification = require('./notification')
-var Friends = require('./friend')
 
 var User = mongoose.Schema({
   email: {
@@ -19,15 +18,19 @@ var User = mongoose.Schema({
     type: String,
     required: false
   },
+  friends: [{
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+      index: true
+    }}],
   resetToken: String,
   resetExpires: Date
 })
 
 User.methods.addFriend = function (email, callback) {
   var user = this
-  var query = Friends.find({
-    email: email
-  })
   var getUser = this.model('user').findOne()
     .where('email').equals(email)
     .select('_id email displayName')
@@ -38,10 +41,14 @@ User.methods.addFriend = function (email, callback) {
     console.log('[user.js] From user:', user)
     console.log('[user.js] User found:', foundUser)
     console.log('[user.js] Checking for existing friend request')
-    query.where('added').equals(true).sort('-id').exec(function (err, friendReq) {
+    var checkNotifications = Notification.find({user_email: email,
+      type: 'request', 'content.created_by': user._id})
+    checkNotifications
+    .exec(function (err, friendReq) {
       if (err) {
         return err
       }
+      console.log('[user.js] results:', friendReq)
       if (friendReq.length < 1) {
         console.log('[user.js] No existing friend request')
         console.log('[user.js] creaing notification for user:', foundUser)
@@ -58,7 +65,7 @@ User.methods.addFriend = function (email, callback) {
         return notif.save(callback)
       } else {
         console.log('[user.js] Friend request already exists:', friendReq)
-        return true
+        return callback(null, friendReq)
       }
     })
   })

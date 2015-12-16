@@ -52,13 +52,13 @@ main.mdl-layout__content {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    align-content: flex-start;
     flex-wrap: wrap;
-    justify-content: center; }
+    justify-content: flex-start;
+    width: 90%; }
     main.mdl-layout__content .card-wrapper .card {
       margin: 1em;
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: auto; }
+      flex-grow: 0 1 auto; }
   main.mdl-layout__content .content .landing-login h4 {
     text-align: center; }
   main.mdl-layout__content .content form.signUp .mdl-card__actions, main.mdl-layout__content .content form.logIn .mdl-card__actions {
@@ -87,6 +87,8 @@ main.mdl-layout__content {
     main.mdl-layout__content .content.dashboard .add {
       margin-left: auto;
       margin-right: auto; }
+    main.mdl-layout__content .content.dashboard.notifications {
+      justify-content: center; }
   main.mdl-layout__content .content .friends {
     flex: 1 1 75%; }
   main.mdl-layout__content .content .stream {

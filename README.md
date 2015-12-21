@@ -1,9 +1,16 @@
 # Converse
-
-[![Join the chat at https://gitter.im/NathanBland/converse](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NathanBland/converse?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 An experimental social media platform
 
+[![Join the chat at https://gitter.im/NathanBland/converse](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NathanBland/converse?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+## Contributing
+*Do not commit code to this repo.* Please create a fork, make your changes, and
+then create a pull request. This helps keep a clear picture of what work was done
+with your commits, and helps us keep our sanity.
+
 ## Planned Features
+For a more current version of what is planned/being discussed please see
+[this issue](https://github.com/whiteboards/converse/issues/5)
 _draft of feature list_
 * Users
   * Registration

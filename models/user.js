@@ -22,7 +22,6 @@ var User = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     index: true,
-    unique: true
   }],
   resetToken: String,
   resetExpires: Date
@@ -45,6 +44,10 @@ User.methods.confirmFriend = function (person, callback) {
     checkRequestExists.exec(function (err, request) {
       if (err) {
         throw err
+      }
+      if (foundUser.friends.indexOf(user._id) !== -1) {
+        console.log('[user.js] User tried to add the same friend twice!')
+        return callback('duplicate', null)
       }
       if (request) {
         request.set({
@@ -88,6 +91,9 @@ User.methods.addFriend = function (email, callback) {
   getUser.exec(function (err, foundUser) {
     if (err) {
       throw err
+    }
+    if (user.friends.indexOf(foundUser._id) !== -1) {
+      return callback('duplicate', null)
     }
     console.log('[user.js] From user:', user)
     console.log('[user.js] User found:', foundUser)

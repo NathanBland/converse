@@ -13,7 +13,7 @@ router.route('/')
   .get(function (req, res, next) {
     console.log('[dashboard.js] ', req.path)
     // console.log('[dashboard.js] user:', req.user)
-    console.log('[dashboard.js] locals:', res.locals)
+    // console.log('[dashboard.js] locals:', res.locals)
     return res.render('dashboard', {
       pagetitle: 'Converse'
     })
@@ -42,9 +42,17 @@ router.route('/friend/add')
     }
     req.user.addFriend(req.body.email, function (err, notification) {
       if (err) {
-        if (err === 'self') {
+        if (err === 'duplicate'){
           return res.render('partials/dashboard/notifications', {
             title: 'Your Notifications',
+            notification: {
+              severity: 'error',
+              message: 'You can\'t add the same friend more than once!'
+            }
+          })
+        } else if (err === 'self') {
+          return res.render('add', {
+            title: 'Add a friend',
             notification: {
               severity: 'error',
               message: 'You can\'t add yourself as a friend!'
@@ -77,7 +85,15 @@ router.route('/friend/confirm')
     }
     req.user.confirmFriend(req.body.person, function (err, friend) {
       if (err) {
-        if (err === 'self') {
+        if (err === 'duplicate'){
+          return res.render('partials/dashboard/notifications', {
+            title: 'Your Notifications',
+            notification: {
+              severity: 'error',
+              message: 'You can\'t add the same friend more than once!'
+            }
+          })
+        } else if (err === 'self') {
           return res.render('partials/dashboard/notifications', {
             title: 'Your Notifications',
             notification: {

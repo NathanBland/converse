@@ -6,11 +6,11 @@ An experimental social media platform
 ## Contributing
 *Do not commit code to this repo.* Please create a fork, make your changes, and
 then create a pull request. This helps keep a clear picture of what work was done
-with your commits, and helps us keep our sanity.
+with your commits, and helps us keep our sanity. We use the [Standard JS](https://github.com/feross/standard) format, please comply with it.
 
 ## Planned Features
 For a more current version of what is planned/being discussed please see
-[this issue](https://github.com/whiteboards/converse/issues/5)
+[this issue](https://github.com/whiteboards/converse/issues/5).
 _draft of feature list_
 * Users
   * Registration

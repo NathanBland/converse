@@ -42,7 +42,17 @@ router.route('/friend/add')
     }
     req.user.addFriend(req.body.email, function (err, notification) {
       if (err) {
-        next(err)
+        if (err === 'self') {
+          return res.render('partials/dashboard/notifications', {
+            title: 'Your Notifications',
+            notification: {
+              severity: 'error',
+              message: 'You can\'t add yourself as a friend!'
+            }
+          })
+        } else {
+          next(err)
+        }
       }
       console.log('[dashboard.js] friend notification sent:', notification)
       return res.render('add', {
@@ -67,7 +77,17 @@ router.route('/friend/confirm')
     }
     req.user.confirmFriend(req.body.person, function (err, friend) {
       if (err) {
-        next(err)
+        if (err === 'self') {
+          return res.render('partials/dashboard/notifications', {
+            title: 'Your Notifications',
+            notification: {
+              severity: 'error',
+              message: 'You can\'t add yourself as a friend!'
+            }
+          })
+        } else {
+          next(err)
+        }
       }
       console.log('[dashboard.js] friend added:', friend)
       return res.render('partials/dashboard/notifications', {

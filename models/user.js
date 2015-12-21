@@ -21,13 +21,18 @@ var User = mongoose.Schema({
   friends: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
-    index: true
+    index: true,
+    unique: true
   }],
   resetToken: String,
   resetExpires: Date
 })
 User.methods.confirmFriend = function (person, callback) {
   var user = this
+  if (user._id == person) {
+    console.log('[user.js] User tried to add themself as a friend!')
+    return callback('self', null)
+  }
   var getuser = this.model('user').findOne({_id: person})
   getuser.exec(function (err, foundUser) {
     if (err) {
@@ -73,6 +78,10 @@ User.methods.confirmFriend = function (person, callback) {
 }
 User.methods.addFriend = function (email, callback) {
   var user = this
+  if (user.email === email) {
+    console.log('[user.js] User tried to add themself as a friend!')
+    return callback('self', null)
+  }
   var getUser = this.model('user').findOne()
     .where('email').equals(email)
     .select('_id email displayName')

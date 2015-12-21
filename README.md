@@ -33,39 +33,39 @@ _Draft of feature list. This is not final, this will change._
 * [ ] Users
   * [x] Registration
   * [x] Authentication
-  * [ ]Profile
-    * [ ]Picture
-    * [ ]Age
-    * [ ]Location
-    * [ ]Gender
-    * [ ]Relationships
+  * [ ] Profile
+    * [ ] Picture
+    * [ ] Age
+    * [ ] Location
+    * [ ] Gender
+    * [ ] Relationships
   * [ ] Privacy
     * [ ] Question level
       * [ ] What users can ask a question
       * [ ] Questions that are disabled
     * [ ] Profile Level
       * [ ] Public/private - Private by default
-  * [ ]Questions/requests
-    * [ ]What are you up to?
-    * [ ]What are you listening to?
-    * [ ]What are you reading?
-    * [ ]What are you watching?
-    * [ ]Where are you/where are you headed?
-    * [ ]What are you....? (custom questions)
-* [ ]Landing/dashboard
-  * [ ]Notifications
-  * [ ]Friends Grid/List
-    * [ ]Status request
-  * [ ]Feed
-    * [ ]Status response
-    * [ ]Status of requests
-  * [ ]Add new Friends
-    * [x]By email
-    * [ ]Search by name
+  * [ ] Questions/requests
+    * [ ] What are you up to?
+    * [ ] What are you listening to?
+    * [ ] What are you reading?
+    * [ ] What are you watching?
+    * [ ] Where are you/where are you headed?
+    * [ ] What are you....? (custom questions)
+* [ ] Landing/dashboard
+  * [ ] Notifications
+  * [ ] Friends Grid/List
+    * [ ] Status request
+  * [ ] Feed
+    * [ ] Status response
+    * [ ] Status of requests
+  * [ ] Add new Friends
+    * [x] By email
+    * [ ] Search by name
 * [ ]Socket.io
-  * [ ]Integration with `passport.js`
-  * [ ]Notifications
-  * [ ]Responses
+  * [ ] Integration with `passport.js`
+  * [ ] Notifications
+  * [ ] Responses
 
 ## Technologies Used
 * [node.js](https://nodejs.org/)

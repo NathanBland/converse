@@ -21,13 +21,17 @@ var User = mongoose.Schema({
   friends: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
-    index: true
+    index: true,
   }],
   resetToken: String,
   resetExpires: Date
 })
 User.methods.confirmFriend = function (person, callback) {
   var user = this
+  if (user._id == person) {
+    console.log('[user.js] User tried to add themself as a friend!')
+    return callback('self', null)
+  }
   var getuser = this.model('user').findOne({_id: person})
   getuser.exec(function (err, foundUser) {
     if (err) {
@@ -40,6 +44,10 @@ User.methods.confirmFriend = function (person, callback) {
     checkRequestExists.exec(function (err, request) {
       if (err) {
         throw err
+      }
+      if (foundUser.friends.indexOf(user._id) !== -1) {
+        console.log('[user.js] User tried to add the same friend twice!')
+        return callback('duplicate', null)
       }
       if (request) {
         request.set({
@@ -73,12 +81,19 @@ User.methods.confirmFriend = function (person, callback) {
 }
 User.methods.addFriend = function (email, callback) {
   var user = this
+  if (user.email === email) {
+    console.log('[user.js] User tried to add themself as a friend!')
+    return callback('self', null)
+  }
   var getUser = this.model('user').findOne()
     .where('email').equals(email)
     .select('_id email displayName')
   getUser.exec(function (err, foundUser) {
     if (err) {
       throw err
+    }
+    if (user.friends.indexOf(foundUser._id) !== -1) {
+      return callback('duplicate', null)
     }
     console.log('[user.js] From user:', user)
     console.log('[user.js] User found:', foundUser)

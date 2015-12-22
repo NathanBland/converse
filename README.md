@@ -62,7 +62,7 @@ _Draft of feature list. This is not final, this will change._
   * [ ] Add new Friends
     * [x] By email
     * [ ] Search by name
-* [ ]Socket.io
+* [ ] Socket.io
   * [ ] Integration with `passport.js`
   * [ ] Notifications
   * [ ] Responses
@@ -90,3 +90,4 @@ _Draft of feature list. This is not final, this will change._
 ## Contributors
 * [NathanBland](https://github.com/NathanBland/)
 * [keawade](https://github.com/keawade/)
+* [crodeheaver](https://github.com/crodeheaver/)

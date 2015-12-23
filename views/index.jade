@@ -2,8 +2,9 @@ extends ./layout.jade
 
 block content
   div.content
-    h1 #{sitename}
-    h4 #{slogan}
+    h1.landing__title #{sitename}
+    h4.landing__slogan #{slogan}
+    div.landing__bg
     div.landing-login
       include ./partials/form__signUp
       include ./partials/form__login

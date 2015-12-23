@@ -40,6 +40,8 @@ aside.notification {
     background-color: #f4a936; }
   aside.notification.success {
     background-color: green; }
+  aside.notification.info {
+    background-color: #3f51b5; }
 
 main.mdl-layout__content {
   background-color: #e0e0e0;
@@ -60,6 +62,27 @@ main.mdl-layout__content {
     main.mdl-layout__content .card-wrapper .card {
       margin: 1em;
       flex-grow: 0 1 auto; }
+  main.mdl-layout__content .content .landing__title, main.mdl-layout__content .content .landing__slogan {
+    color: white;
+    text-shadow: 1px 1px 2px black; }
+  main.mdl-layout__content .content .landing__bg {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    background-image: url("/images/landing.jpg");
+    background-size: cover;
+    background-position: bottom;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
   main.mdl-layout__content .content .landing-login h4 {
     text-align: center; }
   main.mdl-layout__content .content form.signUp .mdl-card__actions, main.mdl-layout__content .content form.logIn .mdl-card__actions {

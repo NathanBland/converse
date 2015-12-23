@@ -3,6 +3,7 @@ $dashboard-bg-1: #262A3C
 $error-primary-1: rgb(244, 67, 54)
 $warn-primary-1: rgb(244, 169, 54)
 $success-primary-1: green
+$info-primary-1: $primary-bg-color-1
 
 header
   &.dashboard
@@ -50,6 +51,8 @@ aside.notification
     background-color: $warn-primary-1
   &.success
     background-color: $success-primary-1
+  &.info
+    background-color: $info-primary-1
 main.mdl-layout__content
   background-color: rgb(224, 224, 224)
   display: flex
@@ -72,6 +75,28 @@ main.mdl-layout__content
       flex-grow: 0 1 auto
 
   .content
+    .landing__title, .landing__slogan
+        color: white
+        text-shadow: 1px 1px 2px black
+
+    .landing__bg
+      content: ''
+      position: fixed
+      left: 0
+      right: 0
+      top: 0
+      z-index: -1
+      background-image: url('/images/landing.jpg')
+      background-size: cover
+      background-position: bottom
+      -webkit-filter: blur(5px)
+      -moz-filter: blur(5px)
+      -o-filter: blur(5px)
+      -ms-filter: blur(5px)
+      filter: blur(5px)
+      width: 100%
+      height: 100%
+      overflow: hidden
     .landing-login
       h4
         text-align: center
